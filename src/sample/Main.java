@@ -2,6 +2,8 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,20 +17,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Button btn =new Button();
-        Label userName = new Label("UserName");
-        Label password = new Label("Password");
-        TextField nameText = new TextField();
-        TextField passwordText = new TextField();
-        btn.setText("Hello World");
-        GridPane pane = new GridPane();
-        pane.getChildren().addAll(userName,nameText);
-        pane.getChildren().addAll(password,passwordText);
-        pane.getChildren().add(btn);
-        primaryStage.setTitle("Hello World");
-
-        primaryStage.setScene(new Scene(pane, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Login");
+        Scene scene = new Scene(root, 300, 275);
+        scene.getStylesheets().add(getClass().getResource("sample.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
