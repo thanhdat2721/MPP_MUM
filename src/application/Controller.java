@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import model.LibraryMember;
 
 public class Controller implements Initializable {
 
@@ -144,7 +145,7 @@ public class Controller implements Initializable {
 		return members;
 	}
 
-	// button search - >  filter member list 
+	// button search - > filter member list
 	public void searchMember(ActionEvent event) {
 		System.out.println("search btn ");
 		statusLabel.setText("");
@@ -158,14 +159,14 @@ public class Controller implements Initializable {
 			statusLabel.setText("Not found");
 		} else {
 			tableView.setItems(filtered);
-			lmember = filtered.get(0);			
+			lmember = filtered.get(0);
 			setDetailsInfo(lmember);
 			statusLabel.setText("");
 		}
 
 	}
 
-	private void setDetailsInfo(LibraryMember member ) {
+	private void setDetailsInfo(LibraryMember member) {
 		txtMemberNo.setText(String.valueOf(member.getMemberNum()));
 		txtFirstName.setText(member.getFirstName());
 		txtLastName.setText(member.getLastName());
@@ -174,7 +175,7 @@ public class Controller implements Initializable {
 		dateRegistered.setValue(member.getRegisteredDate());
 	}
 
-	// button add  create new member object
+	// button add create new member object
 	public void addNewMember(ActionEvent event) {
 		System.out.println("add btn");
 		cancelMember(event);
@@ -183,16 +184,15 @@ public class Controller implements Initializable {
 		setDisableDetailCtrl(false);
 
 	}
-	
-	// button edit  prepare to enable details fields 
+
+	// button edit prepare to enable details fields
 	public void editMember(ActionEvent event) {
 		System.out.println("edit btn");
-		if (lmember.getMemberNum()!= 0) {
+		if (lmember.getMemberNum() != 0) {
 			setDisableDetailCtrl(false);
-		}	 	
+		}
 	}
 
-	
 	private void setDisableDetailCtrl(Boolean f) {
 		txtFirstName.setDisable(f);
 		txtLastName.setDisable(f);
@@ -203,7 +203,7 @@ public class Controller implements Initializable {
 		btnCancel.setDisable(f);
 	}
 
-	// button save  call for add and edit 
+	// button save call for add and edit
 	public void saveMember(ActionEvent event) {
 		System.out.println("save btn" + lmember.getMemberNum());
 
@@ -226,8 +226,7 @@ public class Controller implements Initializable {
 			lmember.setMobileNo(txtMobile.getText());
 			lmember.setEmail(txtEmail.getText());
 			lmember.setRegisteredDate(dateRegistered.getValue());
-			
-			
+
 			members.set(tableView.selectionModelProperty().getValue().getSelectedIndex(), lmember);
 
 		}
@@ -235,7 +234,7 @@ public class Controller implements Initializable {
 
 	}
 
-	//selected member show to detail side
+	// selected member show to detail side
 	public void selectedMember(MouseEvent event) {
 		System.out.println("select btn");
 
