@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:controller="sample.Controller"
+<GridPane fx:controller="Login.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <Text styleClass="title"  text="Login" GridPane.columnIndex="1" GridPane.columnSpan="2"></Text>
     <Label styleClass="label" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1"></Label>
