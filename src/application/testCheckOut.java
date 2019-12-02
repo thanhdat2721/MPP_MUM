@@ -1,6 +1,5 @@
 package application;
 
-import java.time.LocalTime;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -35,17 +34,7 @@ public class testCheckOut extends Application {
 		}
 	}
 	
-	public testCheckOut() {
-		/*checkoutData.add(new BorrowReturnBook("Computer Science ","Hung", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Hung", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Information Technology ","Peter", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","John", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Computer Science ","Melisa", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalTime.now(), LocalTime.of(2019,12, 11), LocalTime.now(), "Returned"));
 	
-*/	}
 
 	public static void main(String[] args) {
 		launch(args);

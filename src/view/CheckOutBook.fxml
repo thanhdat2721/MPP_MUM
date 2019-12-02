@@ -44,7 +44,7 @@
       </Pane>
    </right>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="checkoutTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="cBook" prefWidth="75.0" text="Book" />
           <TableColumn fx:id="cMem" prefWidth="75.0" text="Member" />

@@ -1,20 +1,15 @@
 package model;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class BorrowReturnBook {
 	Book book = new Book();
 	LibraryMember member = new LibraryMember();
-	LocalTime borrowDate;
-	LocalTime dueDate;
-	LocalTime returnDate;
+	LocalDate borrowDate;
+	LocalDate dueDate;
+	LocalDate returnDate;
 	String status;
-	public LocalTime getReturnDate() {
-		return returnDate;
-	}
-	public void setReturnDate(LocalTime returnDate) {
-		this.returnDate = returnDate;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -24,14 +19,17 @@ public class BorrowReturnBook {
 	public Book getBook() {
 		return book;
 	}
+	public String getBookt() {
+		return book.getTitle();
+	}
 	public void setBook(Book book) {
 		this.book = book;
 	}
 	public BorrowReturnBook() {
 		this.book = getBook("Template");
 		this.member = getMember("No Name");
-		this.borrowDate = LocalTime.now();
-		this.dueDate = LocalTime.now();
+		this.borrowDate = LocalDate.now();
+		this.dueDate = LocalDate.now();
 		
 		this.status = "No Status";
 	}
@@ -61,9 +59,12 @@ public class BorrowReturnBook {
 	public LibraryMember getMember() {
 		return member;
 	}
-	public BorrowReturnBook(String book, String member, LocalTime borrowDate, LocalTime dueDate,
-			LocalTime returnDate, String status) {
-		super();
+	public String getMembern() {
+		return member.getFirstName();
+	}
+	public BorrowReturnBook(String book, String member, LocalDate borrowDate, LocalDate dueDate,
+			LocalDate returnDate, String status) {
+		
 		this.book = getBook(book);
 		this.member = getMember(member);
 		this.borrowDate = borrowDate;
@@ -74,18 +75,7 @@ public class BorrowReturnBook {
 	public void setMember(LibraryMember member) {
 		this.member = member;
 	}
-	public LocalTime getBorrowDate() {
-		return borrowDate;
-	}
-	public void setBorrowDate(LocalTime borrowDate) {
-		this.borrowDate = borrowDate;
-	}
-	public LocalTime getDueDate() {
-		return dueDate;
-	}
-	public void setDueDate(LocalTime dueDate) {
-		this.dueDate = dueDate;
-	}
+	
 	
 
 }

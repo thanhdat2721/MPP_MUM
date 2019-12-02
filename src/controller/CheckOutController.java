@@ -1,7 +1,8 @@
 package controller;
 
 import java.net.URL;
-import java.time.LocalTime;
+import java.time.LocalDate;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.BorrowReturnBook;
 
 public class CheckOutController implements Initializable {
@@ -30,8 +32,7 @@ public class CheckOutController implements Initializable {
 
 	@FXML
 	private Button btnSearch;
-	
-	
+
 	@FXML
 	private TextField txtmemberID;
 
@@ -41,14 +42,14 @@ public class CheckOutController implements Initializable {
 	@FXML
 	private TextField txtSearch;
 
-//date time picker 
+	// date time picker
 	@FXML
 	private DatePicker dtBorrowDate;
 	private DatePicker dtDueDate;
-	
+
 	@FXML
 	private TableView<BorrowReturnBook> checkoutTable;
-	
+
 	@FXML
 	private TableColumn<BorrowReturnBook, String> cBook;
 
@@ -66,15 +67,15 @@ public class CheckOutController implements Initializable {
 
 	@FXML
 	private TableColumn<BorrowReturnBook, Date> cReturn;
-	
+
 	@FXML
 	private Label statusLabel;
 
 	ObservableList<BorrowReturnBook> borrowbooks;
 	BorrowReturnBook lBorrow;
-	
+
 	private MainCheckOut mainApp;
-	
+
 	public MainCheckOut getMainApp() {
 		return mainApp;
 	}
@@ -84,7 +85,7 @@ public class CheckOutController implements Initializable {
 	}
 
 	public CheckOutController() {
-		
+
 	}
 
 	public Button getBtnRefresh() {
@@ -159,8 +160,6 @@ public class CheckOutController implements Initializable {
 		this.dtDueDate = dtDueDate;
 	}
 
-	
-
 	public Label getStatusLabel() {
 		return statusLabel;
 	}
@@ -169,36 +168,29 @@ public class CheckOutController implements Initializable {
 		this.statusLabel = statusLabel;
 	}
 
-	
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		borrowbooks = FXCollections.observableArrayList();
-
-		borrowbooks.add(new BorrowReturnBook("Computer Science ","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		//borrowbooks.add(new BorrowReturnBook("Cybersecurity and Information Assurance","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		borrowbooks.add(new BorrowReturnBook("Information Technology ","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		borrowbooks.add(new BorrowReturnBook("Computer Science ","Peterson", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		borrowbooks.add(new BorrowReturnBook("Data Management/Data Analytic ","Peterson", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		borrowbooks.add(new BorrowReturnBook("Computer Science ","Peterson", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPersonDetails(newValue));
-
-
-	}
-
-	private void showPersonDetails(BorrowReturnBook checkout) {
-		// TODO Auto-generated method stub
-		if (checkout!= null) {
-			txtmemberID.setText(checkout.getMember().getFirstName());
-			txtBookID.setText(checkout.getBook().getTitle());
+		borrowbooks = FXCollections.observableArrayList(
 			
-		} else {
-			txtmemberID.setText("");
-			txtBookID.setText("");
+		new BorrowReturnBook("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
+			);
 
-		}
+		cBook.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("getBookt()")); //getMembern()
+		cMem.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("getMembern()"));
+		cBor.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("borrowDate"));
+		cDue.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("dueDate"));
+		cReturn.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("returnDate"));
+		cStatus.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("status"));
+		
+		checkoutTable.setItems(borrowbooks);
+		
 	}
-	
 
 }
