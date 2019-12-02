@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import application.MainCheckOut;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -69,7 +70,19 @@ public class CheckOutController implements Initializable {
 	private TableColumn<BorrowReturnBook, Date> cReturn;
 
 	@FXML
-	private Label statusLabel;
+	private Label bookLabel;
+	@FXML
+	private Label memberLabel;
+	@FXML
+	private Label dborrowedLabel;
+	@FXML
+	private Label ddueLabel;
+	@FXML
+	private Label dreturnLabel;
+	@FXML
+	private Label statusLabel; //searchLabel
+	@FXML
+	private Label searchLabel;
 
 	ObservableList<BorrowReturnBook> borrowbooks;
 	BorrowReturnBook lBorrow;
@@ -174,23 +187,92 @@ public class CheckOutController implements Initializable {
 		borrowbooks = FXCollections.observableArrayList(
 			
 		new BorrowReturnBook("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new BorrowReturnBook("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new BorrowReturnBook("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new BorrowReturnBook("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new BorrowReturnBook("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new BorrowReturnBook("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new BorrowReturnBook("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "New"),
 		new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
 			);
 
-		cBook.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("getBookt()")); //getMembern()
-		cMem.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("getMembern()"));
+		cBook.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("bookname")); //getMembern()
+		cMem.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("membername"));
 		cBor.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("borrowDate"));
-		cDue.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("dueDate"));
-		cReturn.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("returnDate"));
 		cStatus.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("status"));
 		
 		checkoutTable.setItems(borrowbooks);
+		showCheckOutDetails(null);
 		
+		checkoutTable.getSelectionModel().selectedItemProperty()
+		.addListener((observable, oldValue, newValue) -> showCheckOutDetails(newValue));
+		
+	}
+	private void showCheckOutDetails(BorrowReturnBook item) {
+		if (item != null) {
+			// Fill the labels with info from the person object.
+			bookLabel.setText(item.getBookname());
+			memberLabel.setText(item.getMembername());
+			dborrowedLabel.setText(item.getBorrowDate().toString());
+			ddueLabel.setText(item.getDueDate().toString());
+			dreturnLabel.setText(item.getReturnDate().toString());
+			statusLabel.setText(item.getStatus());
+
+			// TODO: We need a way to convert the birthday into a String!
+			// birthdayLabel.setText(...);
+		} else {
+			// Person is null, remove all the text.
+			bookLabel.setText("");
+			memberLabel.setText("");
+			dborrowedLabel.setText("");
+			ddueLabel.setText("");
+			dreturnLabel.setText("");
+			statusLabel.setText("");
+		}
+	}
+	public void checkoutbook (ActionEvent e){
+		BorrowReturnBook ne= new BorrowReturnBook();
+		ne.setBookname(txtBookID.getText());
+		ne.setMembername(txtmemberID.getText());
+		ne.setBorrowDate(dtBorrowDate.getValue());
+		ne.setDueDate(dtBorrowDate.getValue().plusDays(12));
+		ne.setReturnDate(null);
+		ne.setStatus("Processing");
+		borrowbooks.add(ne);
+		
+
+	
+	}
+	public void cancelcheckoutbook (ActionEvent e){
+		txtBookID.setText(null);
+		txtmemberID.setText(null);
+		txtSearch.setText(null);
+		dtBorrowDate.setValue(null);
+		
+	}
+	public void refreshcheckoutbook (ActionEvent e){
+		txtBookID.setText(null);
+		txtmemberID.setText(null);
+		txtSearch.setText(null);
+		dtBorrowDate.setValue(null);
+		
+	}
+	public void searchcheckoutbook (ActionEvent e){
+		if (txtSearch.getText()==""||txtSearch.getText()==null) {
+			checkoutTable.setItems(borrowbooks);
+			
+		} else {
+			ObservableList<BorrowReturnBook> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase()== txtSearch.getText().toLowerCase());
+			if (resultlist.isEmpty()) {
+				searchLabel.setText("Not found any book you search");
+				checkoutTable.setItems(resultlist);
+				
+			} else {
+				checkoutTable.setItems(resultlist);
+				searchLabel.setText("I have found something!");
+
+			}
+					//.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
+		}
 	}
 
 }

@@ -8,6 +8,38 @@ public class BorrowReturnBook {
 	LocalDate borrowDate;
 	LocalDate dueDate;
 	LocalDate returnDate;
+	String bookname;
+	String membername;
+	public LocalDate getBorrowDate() {
+		return borrowDate;
+	}
+	public void setBorrowDate(LocalDate borrowDate) {
+		this.borrowDate = borrowDate;
+	}
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
+	public LocalDate getReturnDate() {
+		return returnDate;
+	}
+	public void setReturnDate(LocalDate returnDate) {
+		this.returnDate = returnDate;
+	}
+	public String getBookname() {
+		return bookname;
+	}
+	public void setBookname(String bookname) {
+		this.bookname = bookname;
+	}
+	public String getMembername() {
+		return membername;
+	}
+	public void setMembername(String membername) {
+		this.membername = membername;
+	}
 	String status;
 	
 	public String getStatus() {
@@ -65,8 +97,8 @@ public class BorrowReturnBook {
 	public BorrowReturnBook(String book, String member, LocalDate borrowDate, LocalDate dueDate,
 			LocalDate returnDate, String status) {
 		
-		this.book = getBook(book);
-		this.member = getMember(member);
+		this.bookname = book;
+		this.membername = member;//getMember(member);
 		this.borrowDate = borrowDate;
 		this.dueDate = dueDate;
 		this.returnDate = returnDate;
