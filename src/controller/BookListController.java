@@ -6,15 +6,18 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -40,6 +43,8 @@ public class BookListController implements Initializable {
 	private Label issnLabel;
 	@FXML
 	private Label pDateLabel;
+	
+	@FXML Button btnMemberManagement;
 
 	// private Main2 mainApp;
 
@@ -153,4 +158,21 @@ public class BookListController implements Initializable {
 
 		return controller.isOkClicked();
 	}
+	
+	public void memberManageButtonEvent(ActionEvent event) {
+
+		if(event.getSource() == btnMemberManagement)
+	    {
+			try {
+				Stage appStage = (Stage)btnMemberManagement.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
+		        Scene scene = new Scene(root);
+		        appStage.setTitle("Member Management");
+		        appStage.setScene(scene);
+		        appStage.show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+	    }
+	}	
 }
