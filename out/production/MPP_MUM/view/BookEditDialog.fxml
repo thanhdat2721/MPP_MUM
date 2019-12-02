@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="205.0" prefWidth="445.5" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.BookEditDialogController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <GridPane layoutX="14.0" layoutY="25.0" prefHeight="133.0" prefWidth="432.0">
+      <children>
+        <Label prefHeight="33.0" prefWidth="120.0" text="Title" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label prefHeight="33.0" prefWidth="120.0" text="ISSN" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label id="txtPublishedDate" prefHeight="33.0" prefWidth="120.0" text="Published Date" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label prefHeight="33.0" prefWidth="120.0" text="Author" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtTitle" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="txtAuthor" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="txtIssn" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="txtPublishedDate" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="73.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="322.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="85.0" minHeight="2.0" prefHeight="29.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <HBox layoutX="14.0" layoutY="151.0" prefHeight="50.0" prefWidth="411.0">
+      <children>
+        <Button mnemonicParsing="false" onAction="#handleOk" text="OK">
+          <HBox.margin>
+            <Insets right="10.0" top="10.0" />
+          </HBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
+          <HBox.margin>
+            <Insets top="10.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

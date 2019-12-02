@@ -1,4 +1,4 @@
-package Login;
+package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     private TextField emailField;
@@ -58,13 +58,14 @@ public class Controller implements Initializable {
         FilteredList<User> t = users.filtered(user-> user.getEmail().equals(email) && user.getPassword().equals(password));
         System.out.println(t);
         if(t.isEmpty()){
-            resultMsg.setText("Login Failed");
+            resultMsg.setText("Invalid Email and Password");
         }
         else {
             resultMsg.setText("Login Successfully!");
             try {
+                String window = t.get(0).getRole()==0 ? "/view/MemberManagement.fxml":"/view/CheckOutBook.fxml" ;
                 pane = FXMLLoader.load(
-                        getClass().getResource("/view/MemberManagement.fxml"));
+                        getClass().getResource(window));
 
                 Stage app_state = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
                 app_state.getScene().setRoot(pane);
