@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -200,9 +202,11 @@ public class MemberManagementController implements Initializable {
 		if (lmember.getMemberNum() != 0) {
 			setDisableDetailCtrl(false);
 		}
+		txtMemberNo.setDisable(true);
 	}
 
 	private void setDisableDetailCtrl(Boolean f) {
+		txtMemberNo.setDisable(f);
 		txtFirstName.setDisable(f);
 		txtLastName.setDisable(f);
 		txtMobile.setDisable(f);
@@ -225,8 +229,14 @@ public class MemberManagementController implements Initializable {
 
 				tableView.getItems().add(member);
 				members = tableView.getItems();
-			} else
+			}  else {
 				statusLabel.setText("Error:It is already in the list.");
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("Member Number should be unique");
+				alert.setContentText("It is already in the list. Member No: " + txtMemberNo.getText());
+				alert.showAndWait();
+			}
 		} else {
 			System.out.println("edit" + lmember.getMemberNum());
 			lmember.setMemberNum(new Integer(txtMemberNo.getText()));
@@ -236,7 +246,7 @@ public class MemberManagementController implements Initializable {
 			lmember.setEmail(txtEmail.getText());
 			lmember.setRegisteredDate(dateRegistered.getValue());
 
-			members.set(tableView.selectionModelProperty().getValue().getSelectedIndex(), lmember);
+			members.set(members.indexOf(tableView.getSelectionModel().getSelectedItem()), lmember);
 
 		}
 		cancelMember(event);
