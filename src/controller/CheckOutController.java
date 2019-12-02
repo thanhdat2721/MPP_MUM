@@ -1,11 +1,11 @@
 package controller;
 
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-//import javafx.beans.value.ChangeListener;
-//import javafx.beans.value.ObservableValue;
+import application.MainCheckOut;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,9 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-//import javafx.scene.control.cell.PropertyValueFactory;
 import model.BorrowReturnBook;
-import model.CheckedOutBook;
 
 public class CheckOutController implements Initializable {
 	@FXML
@@ -48,6 +46,47 @@ public class CheckOutController implements Initializable {
 	private DatePicker dtBorrowDate;
 	private DatePicker dtDueDate;
 	
+	@FXML
+	private TableView<BorrowReturnBook> checkoutTable;
+	
+	@FXML
+	private TableColumn<BorrowReturnBook, String> cBook;
+
+	@FXML
+	private TableColumn<BorrowReturnBook, String> cMem;
+
+	@FXML
+	private TableColumn<BorrowReturnBook, Date> cBor;
+
+	@FXML
+	private TableColumn<BorrowReturnBook, Date> cDue;
+
+	@FXML
+	private TableColumn<BorrowReturnBook, String> cStatus;
+
+	@FXML
+	private TableColumn<BorrowReturnBook, Date> cReturn;
+	
+	@FXML
+	private Label statusLabel;
+
+	ObservableList<BorrowReturnBook> borrowbooks;
+	BorrowReturnBook lBorrow;
+	
+	private MainCheckOut mainApp;
+	
+	public MainCheckOut getMainApp() {
+		return mainApp;
+	}
+
+	public void setMainApp(MainCheckOut mainApp) {
+		this.mainApp = mainApp;
+	}
+
+	public CheckOutController() {
+		
+	}
+
 	public Button getBtnRefresh() {
 		return btnRefresh;
 	}
@@ -120,61 +159,7 @@ public class CheckOutController implements Initializable {
 		this.dtDueDate = dtDueDate;
 	}
 
-	public TableView<CheckedOutBook> getTableview() {
-		return tableview;
-	}
-
-	public void setTableview(TableView<CheckedOutBook> tableview) {
-		this.tableview = tableview;
-	}
-
-	public TableColumn<CheckedOutBook, String> getcBook() {
-		return cBook;
-	}
-
-	public void setcBook(TableColumn<CheckedOutBook, String> cBook) {
-		this.cBook = cBook;
-	}
-
-	public TableColumn<CheckedOutBook, String> getcMem() {
-		return cMem;
-	}
-
-	public void setcMem(TableColumn<CheckedOutBook, String> cMem) {
-		this.cMem = cMem;
-	}
-
-	public TableColumn<CheckedOutBook, Date> getcBor() {
-		return cBor;
-	}
-
-	public void setcBor(TableColumn<CheckedOutBook, Date> cBor) {
-		this.cBor = cBor;
-	}
-
-	public TableColumn<CheckedOutBook, Date> getcDue() {
-		return cDue;
-	}
-
-	public void setcDue(TableColumn<CheckedOutBook, Date> cDue) {
-		this.cDue = cDue;
-	}
-
-	public TableColumn<CheckedOutBook, String> getcStatus() {
-		return cStatus;
-	}
-
-	public void setcStatus(TableColumn<CheckedOutBook, String> cStatus) {
-		this.cStatus = cStatus;
-	}
-
-	public TableColumn<CheckedOutBook, Date> getcReturn() {
-		return cReturn;
-	}
-
-	public void setcReturn(TableColumn<CheckedOutBook, Date> cReturn) {
-		this.cReturn = cReturn;
-	}
+	
 
 	public Label getStatusLabel() {
 		return statusLabel;
@@ -184,44 +169,36 @@ public class CheckOutController implements Initializable {
 		this.statusLabel = statusLabel;
 	}
 
-	@FXML
-	private TableView<CheckedOutBook> tableview;
 	
-	@FXML
-	private TableColumn<CheckedOutBook, String> cBook;
-
-	@FXML
-	private TableColumn<CheckedOutBook, String> cMem;
-
-	@FXML
-	private TableColumn<CheckedOutBook, Date> cBor;
-
-	@FXML
-	private TableColumn<CheckedOutBook, Date> cDue;
-
-	@FXML
-	private TableColumn<CheckedOutBook, String> cStatus;
-
-	@FXML
-	private TableColumn<CheckedOutBook, Date> cReturn;
-	
-	@FXML
-	private Label statusLabel;
-
-	ObservableList<BorrowReturnBook> borrowbooks;
-	BorrowReturnBook lBorrow;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		borrowbooks = FXCollections.observableArrayList();
 
-		//borrowbooks.add(new BorrowReturnBook("Computer Science ", "11/13/2019", "11/25/2019", "11/173/2019", "Returned"));
-		//borrowbooks.add(new BorrowReturnBook("Cybersecurity and Information Assurance", "Peter", "11/13/2019", "11/25/2019"));
-		//borrowbooks.add(new BorrowReturnBook("Data Management/Data Analytics", "Haltur", "11/13/2019", "11/25/2019"));
-		//borrowbooks.add(new BorrowReturnBook("Information Technology", "Peterson", "11/13/2019", "11/25/2019"));
+		borrowbooks.add(new BorrowReturnBook("Computer Science ","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
+		//borrowbooks.add(new BorrowReturnBook("Cybersecurity and Information Assurance","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
+		borrowbooks.add(new BorrowReturnBook("Information Technology ","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
+		borrowbooks.add(new BorrowReturnBook("Computer Science ","Peterson", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
+		borrowbooks.add(new BorrowReturnBook("Data Management/Data Analytic ","Peterson", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
+		borrowbooks.add(new BorrowReturnBook("Computer Science ","Peterson", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
+		checkoutTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPersonDetails(newValue));
 
 
 	}
+
+	private void showPersonDetails(BorrowReturnBook checkout) {
+		// TODO Auto-generated method stub
+		if (checkout!= null) {
+			txtmemberID.setText(checkout.getMember().getFirstName());
+			txtBookID.setText(checkout.getBook().getTitle());
+			
+		} else {
+			txtmemberID.setText("");
+			txtBookID.setText("");
+
+		}
+	}
+	
 
 }

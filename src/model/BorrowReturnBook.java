@@ -28,10 +28,28 @@ public class BorrowReturnBook {
 		this.book = book;
 	}
 	public BorrowReturnBook() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.book = getBook("Template");
+		this.member = getMember("No Name");
+		this.borrowDate = LocalTime.now();
+		this.dueDate = LocalTime.now();
+		
+		this.status = "No Status";
 	}
-	public BorrowReturnBook(String book, String member, String borrowDate, String dueDate,String realDate, String status) {
+	public Book getBook(String bookid)
+	{
+		Book b1= new Book();
+		b1.setTitle(bookid);
+		return b1;
+		
+	}
+	public LibraryMember getMember(String memid)
+	{
+		LibraryMember mem = new LibraryMember();
+		mem.setFirstName(memid);
+		return mem;
+	
+	}
+	/*public BorrowReturnBook(String book, String member, String borrowDate, String dueDate,String realDate, String status) {
 		super();
 		this.book.setTitle(book);
 		this.member.setFirstName(member);
@@ -39,9 +57,19 @@ public class BorrowReturnBook {
 		//this.dueDate = dueDate;
 		//this.returnDate =realDate;
 		this.setStatus(status);
-	}
+	}*/
 	public LibraryMember getMember() {
 		return member;
+	}
+	public BorrowReturnBook(String book, String member, LocalTime borrowDate, LocalTime dueDate,
+			LocalTime returnDate, String status) {
+		super();
+		this.book = getBook(book);
+		this.member = getMember(member);
+		this.borrowDate = borrowDate;
+		this.dueDate = dueDate;
+		this.returnDate = returnDate;
+		this.status = status;
 	}
 	public void setMember(LibraryMember member) {
 		this.member = member;

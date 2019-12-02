@@ -36,3 +36,14 @@
     -fx-font-size: 36px;
     -fx-font-family: "Roboto Light" ;
 }
+
+.body{
+    -fx-background: #007bff;
+}
+.card{
+    -fx-background-color: white;
+    -fx-border: 0;
+    -fx-border-radius: 1px;
+    -fx-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+
+}
