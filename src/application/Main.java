@@ -12,9 +12,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/ListCheckedOutBook.fxml"));		
-			primaryStage.setTitle("Member Management");
-			primaryStage.setScene(new Scene(root));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));		
+			primaryStage.setTitle("Login");
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
+			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

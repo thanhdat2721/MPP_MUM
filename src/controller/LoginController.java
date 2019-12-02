@@ -68,6 +68,13 @@ public class LoginController implements Initializable {
                         getClass().getResource(window));
 
                 Stage app_state = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                if(t.get(0).getRole()==0) {
+                	app_state.setTitle("Administrator");
+                }
+                else {
+                	app_state.setTitle("Librarian");
+                }
+                
                 app_state.getScene().setRoot(pane);
                 app_state.show();
             } catch (IOException e) {
