@@ -20,15 +20,15 @@ public class MainCheckOut extends Application {
 
 	public MainCheckOut() {
 		// TODO Auto-generated constructor stub
-		checkoutData.add(new BorrowReturnBook("Computer Science ","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Hung", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Information Technology ","Peter", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","John", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Computer Science ","Melisa", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalTime.now(), LocalTime.of(2019,12, 13), LocalTime.now(), "Returned"));
-	}
+		checkoutData.add(new BorrowReturnBook("Computer Science ","Hung", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+		/*checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Hung", LocalTime.now(), LocalTime.of(18, 12,2019), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Information Technology ","Peter", LocalTime.now(), LocalTime.of(11,12, 2019), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","John", LocalTime.now(), LocalTime.of(18,12, 2019), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalTime.now(), LocalTime.of(19,12, 2019), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Computer Science ","Melisa", LocalTime.now(), LocalTime.of(18,12, 2019), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalTime.now(), LocalTime.of(19,12, 2012), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalTime.now(), LocalTime.of(20,12, 2019), LocalTime.now(), "Returned"));
+	*/}
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
@@ -68,9 +68,9 @@ public class MainCheckOut extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainCheckOut.class.getResource("/view/CheckOutBook.fxml"));
 			BorderPane ChecOutBook = (BorderPane) loader.load();
-			rootLayout.setCenter(ChecOutBook);
+			//rootLayout.setCenter(ChecOutBook);
 			CheckOutController controller = loader.getController();
-			controller.setMainApp(this);
+			//controller.setMainApp(this);
 			root = FXMLLoader.load(getClass().getResource("/view/CheckOutBook.fxml"));
 			primaryStage.setTitle("Check Out Book");
 			primaryStage.setScene(new Scene(root));
