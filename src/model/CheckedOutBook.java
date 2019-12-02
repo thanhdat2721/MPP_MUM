@@ -4,18 +4,31 @@ import java.util.Date;
 
 public class CheckedOutBook {
 	
+	private Integer id;
 	private String bookName;
 	private String memberName;
 	private String checkoutDate;
 	private String dueDate;
 	
-	public CheckedOutBook(String bookName, String memberName, String checkoutDate, String dueDate) {
-		super();
+	public CheckedOutBook(Integer id, String bookName, String memberName, String checkoutDate, String dueDate) {
+
+		this.id = id;
 		this.bookName = bookName;
 		this.memberName = memberName;
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
 	}
+
+	
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 	public String getBookName() {
 		return bookName;
