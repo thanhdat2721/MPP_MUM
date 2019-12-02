@@ -33,8 +33,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         users = FXCollections.observableArrayList();
-        users.add(new User("admin1","123",0));
-        users.add(new User("admin2","123",1));
+        users.add(new User("admin","123",0));
+        users.add(new User("librarian","123",1));
 
 //        emailField.textProperty().addListener(new ChangeListener<String>(){
 //            @Override
@@ -68,6 +68,13 @@ public class LoginController implements Initializable {
                         getClass().getResource(window));
 
                 Stage app_state = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                if(t.get(0).getRole()==0) {
+                	app_state.setTitle("Administrator");
+                }
+                else {
+                	app_state.setTitle("Librarian");
+                }
+                
                 app_state.getScene().setRoot(pane);
                 app_state.show();
             } catch (IOException e) {

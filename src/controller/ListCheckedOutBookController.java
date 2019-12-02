@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,7 +31,7 @@ import model.CheckedOutBook;
 public class ListCheckedOutBookController implements Initializable{
 	
 	@FXML
-	private TextField txtDueDate;
+	private DatePicker dtFindDate;
 	
 	@FXML
 	private Button btnFind;
@@ -79,11 +80,11 @@ public class ListCheckedOutBookController implements Initializable{
 	}
 	
 	
-	public ObservableList<CheckedOutBook> findOverdueBook(String date){
-
+	public ObservableList<CheckedOutBook> findOverdueBook(LocalDate dueDate){
+System.out.println(">>>>>>> "+ LocalDate.parse(dueDate.format(FORMATTER),FORMATTER));
 		FilteredList<CheckedOutBook> filteredData = new FilteredList<>(listBooks, b -> true);
 		filteredData.setPredicate(checkedOutBook -> {
-			if(LocalDate.parse(date, FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate(), FORMATTER), ChronoUnit.DAYS) <= 0) {
+			if(LocalDate.parse(dueDate.format(FORMATTER), FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate(), FORMATTER), ChronoUnit.DAYS) <= 0) {
 				return true;
 			}
 			return false;
@@ -109,8 +110,8 @@ public class ListCheckedOutBookController implements Initializable{
 //	    }
 //		
 		
-		String findDate = txtDueDate.getText().trim();
-		if(findDate.isEmpty()) {
+		LocalDate findDate = dtFindDate.getValue();
+		if(findDate == null) {
 			bookTableView.setItems(listBooks);
 			return;
 		}
