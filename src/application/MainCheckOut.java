@@ -21,14 +21,14 @@ public class MainCheckOut extends Application {
 	public MainCheckOut() {
 		// TODO Auto-generated constructor stub
 		checkoutData.add(new BorrowReturnBook("Computer Science ","Hung", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
-		/*checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Hung", LocalTime.now(), LocalTime.of(18, 12,2019), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Information Technology ","Peter", LocalTime.now(), LocalTime.of(11,12, 2019), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","John", LocalTime.now(), LocalTime.of(18,12, 2019), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalTime.now(), LocalTime.of(19,12, 2019), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Computer Science ","Melisa", LocalTime.now(), LocalTime.of(18,12, 2019), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalTime.now(), LocalTime.of(19,12, 2012), LocalTime.now(), "Returned"));
-		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalTime.now(), LocalTime.of(20,12, 2019), LocalTime.now(), "Returned"));
-	*/}
+		//checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Hung", LocalTime.now(), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Information Technology ","Peter", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","John", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Computer Science ","Melisa", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+		checkoutData.add(new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalTime.now(), LocalTime.now(), LocalTime.now(), "Returned"));
+	}
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
