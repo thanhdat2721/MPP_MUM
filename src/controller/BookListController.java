@@ -27,6 +27,8 @@ public class BookListController implements Initializable {
 	@FXML
 	private TableView<Book> tableBook;
 	@FXML
+	private TableColumn<Book, String> idColumn;
+	@FXML
 	private TableColumn<Book, String> titleColumn;
 	@FXML
 	private TableColumn<Book, String> authorColumn;
@@ -41,16 +43,18 @@ public class BookListController implements Initializable {
 	private Label issnLabel;
 	@FXML
 	private Label pDateLabel;
-	
-	@FXML Button btnMemberManagement;
+	@FXML
+	private Label numLabel;
 
-	// private Main2 mainApp;
+	@FXML
+	Button btnMemberManagement;
 
 	private ObservableList<Book> bookData = BookRepo.bookData;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		idColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("bookId"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
 		authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
 		issnColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("issn"));
@@ -67,19 +71,22 @@ public class BookListController implements Initializable {
 			this.authorLabel.setText(book.getAuthor());
 			this.issnLabel.setText(book.getIssn());
 			this.pDateLabel.setText(book.getPublishedDate().toString());
+			this.numLabel.setText(BookRepo.getBookCopyNum(book.getBookId()).toString());
 		} else {
 			this.titleLabel.setText("");
 			this.authorLabel.setText("");
 			this.issnLabel.setText("");
 			this.pDateLabel.setText("");
-		}   
+			this.numLabel.setText("");
+		}
 	}
 
 	@FXML
 	public void handleDeleteBook() {
 		int selectedIndex = tableBook.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			tableBook.getItems().remove(selectedIndex);
+			// tableBook.getItems().remove(selectedIndex);
+			BookRepo.deleteBook(tableBook.getItems().get(selectedIndex));
 		} else {
 		}
 	}
@@ -107,6 +114,15 @@ public class BookListController implements Initializable {
 		}
 	}
 
+	@FXML
+	public void handleAddBookCopy() {
+		Book selectedBook = tableBook.getSelectionModel().getSelectedItem();
+		if (selectedBook != null) {
+			BookRepo.addBookCopy(selectedBook.getBookId());
+			this.numLabel.setText(BookRepo.getBookCopyNum(selectedBook.getBookId()).toString());
+		}
+	}
+
 	public boolean showBookEditDialog(Book book) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("../view/BookEditDialog.fxml"));
@@ -127,21 +143,20 @@ public class BookListController implements Initializable {
 
 		return controller.isOkClicked();
 	}
-	
+
 	public void memberManageButtonEvent(ActionEvent event) {
 
-		if(event.getSource() == btnMemberManagement)
-	    {
+		if (event.getSource() == btnMemberManagement) {
 			try {
-				Stage appStage = (Stage)btnMemberManagement.getScene().getWindow();
+				Stage appStage = (Stage) btnMemberManagement.getScene().getWindow();
 				Parent root = FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
-		        Scene scene = new Scene(root);
-		        appStage.setTitle("Member Management");
-		        appStage.setScene(scene);
-		        appStage.show();
-			} catch(Exception e) {
+				Scene scene = new Scene(root);
+				appStage.setTitle("Member Management");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    }
-	}	
+		}
+	}
 }
