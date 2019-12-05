@@ -45,6 +45,9 @@ public class BookListController implements Initializable {
 	private Label pDateLabel;
 	@FXML
 	private Label numLabel;
+	
+	@FXML
+	private Button btnLogout;
 
 	@FXML
 	Button btnMemberManagement;
@@ -110,7 +113,8 @@ public class BookListController implements Initializable {
 		Book tempBook = new Book();
 		boolean okClicked = this.showBookEditDialog(tempBook);
 		if (okClicked) {
-			bookData.add(tempBook);
+			BookRepo.addBook(tempBook.getTitle(), tempBook.getAuthor(), tempBook.getIssn(),
+					tempBook.getPublishedDate());
 		}
 	}
 
@@ -152,6 +156,23 @@ public class BookListController implements Initializable {
 				Parent root = FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
 				Scene scene = new Scene(root);
 				appStage.setTitle("Member Management");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void logoutAction(ActionEvent event) {
+		if (event.getSource() == btnLogout) {
+
+			try {
+				Stage appStage = (Stage) btnLogout.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
+				appStage.setTitle("Login");
 				appStage.setScene(scene);
 				appStage.show();
 			} catch (Exception e) {

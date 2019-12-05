@@ -9,7 +9,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-
 public class Book {
 	private Integer bookId;
 
@@ -23,7 +22,7 @@ public class Book {
 	private final ObjectProperty<LocalDate> publishedDate;
 
 	public Book() {
-		this(null, null, null, null, null);
+		this(null, null, null, null, LocalDate.now());
 	}
 
 	public Book(Integer bookId, String title, String author, String issn, LocalDate date) {
