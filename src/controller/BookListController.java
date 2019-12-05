@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,17 +11,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Book;
+import repository.BookRepo;
 import application.Main;
 
 public class BookListController implements Initializable {
@@ -48,13 +46,7 @@ public class BookListController implements Initializable {
 
 	// private Main2 mainApp;
 
-	private ObservableList<Book> bookData = DummyData.bookData;
-
-	// public void setMainApp(Main2 mainApp) {
-	// // this.mainApp = mainApp;
-	// // ObservableList<Book> bookData = mainApp.getBookData();
-	// // tableBook.setItems(bookData);
-	// }
+	private ObservableList<Book> bookData = BookRepo.bookData;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -89,14 +81,6 @@ public class BookListController implements Initializable {
 		if (selectedIndex >= 0) {
 			tableBook.getItems().remove(selectedIndex);
 		} else {
-			// Nothing selected.
-			// Alert alert = new Alert(AlertType.WARNING);
-			// alert.initOwner(mainApp.getPrimaryStage());
-			// alert.setTitle("No Selection");
-			// alert.setHeaderText("No Book Selected");
-			// alert.setContentText("Please select a book in the table.");
-			//
-			// alert.showAndWait();
 		}
 	}
 
@@ -110,14 +94,6 @@ public class BookListController implements Initializable {
 			}
 
 		} else {
-			// Nothing selected.
-			// Alert alert = new Alert(AlertType.WARNING);
-			// alert.initOwner(mainApp.getPrimaryStage());
-			// alert.setTitle("No Selection");
-			// alert.setHeaderText("No Person Selected");
-			// alert.setContentText("Please select a person in the table.");
-			//
-			// alert.showAndWait();
 		}
 
 	}
