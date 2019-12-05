@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class BorrowReturnBook {
+public class CheckOut {
 	Book book = new Book();
 	LibraryMember member = new LibraryMember();
 	LocalDate borrowDate;
@@ -57,7 +57,7 @@ public class BorrowReturnBook {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	public BorrowReturnBook() {
+	public CheckOut() {
 		this.book = getBook("Template");
 		this.member = getMember("No Name");
 		this.borrowDate = LocalDate.now();
@@ -94,7 +94,7 @@ public class BorrowReturnBook {
 	public String getMembern() {
 		return member.getFirstName();
 	}
-	public BorrowReturnBook(String book, String member, LocalDate borrowDate, LocalDate dueDate,
+	public CheckOut(String book, String member, LocalDate borrowDate, LocalDate dueDate,
 			LocalDate returnDate, String status) {
 		
 		this.bookname = book;

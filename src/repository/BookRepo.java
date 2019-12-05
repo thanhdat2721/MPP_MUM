@@ -13,7 +13,7 @@ import model.BookCopy;
 
 public final class BookRepo {
 	public static ObservableList<Book> bookData = FXCollections.observableArrayList();
-	static Map<Integer, List<BookCopy>> bookCopyData = new HashMap<Integer, List<BookCopy>>();
+	static List<BookCopy> bookCopyData = new ArrayList<BookCopy>();
 
 	static int bookAutoIncrement = 6;
 	static int bookCopyAutoIncrement = 0;
@@ -27,6 +27,15 @@ public final class BookRepo {
 		bookData.add(new Book(6, "Pride and Prejudice", "Jane Austen", "", LocalDate.of(1992, 5, 12)));
 	}
 
+	public static Book getBook(int bookId) {
+		for (Book b : bookData) {
+			if (b.getBookId() == bookId) {
+				return b;
+			}
+		}
+		return null;
+	}
+
 	public static void addBook(String title, String author, String issn, LocalDate date) {
 		Book book = new Book(bookAutoIncrement++, title, author, issn, date);
 		bookData.add(book);
@@ -37,20 +46,24 @@ public final class BookRepo {
 	}
 
 	public static void addBookCopy(int bookId) {
-		List<BookCopy> copies = bookCopyData.get(bookId);
-		if (copies == null) {
-			copies = new ArrayList<BookCopy>();
-			bookCopyData.put(bookId, copies);
-		}
-
-		copies.add(new BookCopy(bookId, bookCopyAutoIncrement++));
+		bookCopyData.add(new BookCopy(bookId, bookCopyAutoIncrement++));
 	}
 
-	public static Integer getBookCopyNum(int bookId) {
-		List<BookCopy> copies = bookCopyData.get(bookId);
-		if (copies != null) {
-			return copies.size();
+	public static int getBookCopyNum(int bookId) {
+		int count = 0;
+		for (BookCopy c : bookCopyData) {
+			if (c.getBookId() == bookId)
+				count++;
 		}
-		return 0;
+		return count;
+	}
+
+	public static Book getBookByCopyId(int copyId) {
+		for (BookCopy c : bookCopyData) {
+			if (c.getCopyId() == copyId) {
+				return getBook(c.getBookId());
+			}
+		}
+		return null;
 	}
 }

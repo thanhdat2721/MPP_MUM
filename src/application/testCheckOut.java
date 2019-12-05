@@ -8,17 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.BorrowReturnBook;
+import model.CheckOut;
 
 public class testCheckOut extends Application {
-	private ObservableList<BorrowReturnBook> checkoutData= FXCollections.observableArrayList();
+	private ObservableList<CheckOut> checkoutData= FXCollections.observableArrayList();
 
 
-	public ObservableList<BorrowReturnBook> getCheckoutData() {
+	public ObservableList<CheckOut> getCheckoutData() {
 		return checkoutData;
 	}
 
-	public void setCheckoutData(ObservableList<BorrowReturnBook> checkoutData) {
+	public void setCheckoutData(ObservableList<CheckOut> checkoutData) {
 		this.checkoutData = checkoutData;
 	}
 
