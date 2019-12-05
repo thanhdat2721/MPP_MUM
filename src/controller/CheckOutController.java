@@ -19,7 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.BorrowReturnBook;
+import model.CheckOut;
 
 public class CheckOutController implements Initializable {
 	@FXML
@@ -49,25 +49,25 @@ public class CheckOutController implements Initializable {
 	private DatePicker dtDueDate;
 
 	@FXML
-	private TableView<BorrowReturnBook> checkoutTable;
+	private TableView<CheckOut> checkoutTable;
 
 	@FXML
-	private TableColumn<BorrowReturnBook, String> cBook;
+	private TableColumn<CheckOut, String> cBook;
 
 	@FXML
-	private TableColumn<BorrowReturnBook, String> cMem;
+	private TableColumn<CheckOut, String> cMem;
 
 	@FXML
-	private TableColumn<BorrowReturnBook, Date> cBor;
+	private TableColumn<CheckOut, Date> cBor;
 
 	@FXML
-	private TableColumn<BorrowReturnBook, Date> cDue;
+	private TableColumn<CheckOut, Date> cDue;
 
 	@FXML
-	private TableColumn<BorrowReturnBook, String> cStatus;
+	private TableColumn<CheckOut, String> cStatus;
 
 	@FXML
-	private TableColumn<BorrowReturnBook, Date> cReturn;
+	private TableColumn<CheckOut, Date> cReturn;
 
 	@FXML
 	private Label bookLabel;
@@ -84,8 +84,8 @@ public class CheckOutController implements Initializable {
 	@FXML
 	private Label searchLabel;
 
-	ObservableList<BorrowReturnBook> borrowbooks;
-	BorrowReturnBook lBorrow;
+	ObservableList<CheckOut> borrowbooks;
+	CheckOut lBorrow;
 
 	private MainCheckOut mainApp;
 
@@ -186,19 +186,19 @@ public class CheckOutController implements Initializable {
 
 		borrowbooks = FXCollections.observableArrayList(
 			
-		new BorrowReturnBook("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new BorrowReturnBook("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new BorrowReturnBook("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new BorrowReturnBook("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new BorrowReturnBook("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new BorrowReturnBook("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "New"),
-		new BorrowReturnBook("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
+		new CheckOut("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new CheckOut("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "New"),
+		new CheckOut("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
 			);
 
-		cBook.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("bookname")); //getMembern()
-		cMem.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("membername"));
-		cBor.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,Date>("borrowDate"));
-		cStatus.setCellValueFactory(new PropertyValueFactory<BorrowReturnBook,String>("status"));
+		cBook.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("bookname")); //getMembern()
+		cMem.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("membername"));
+		cBor.setCellValueFactory(new PropertyValueFactory<CheckOut,Date>("borrowDate"));
+		cStatus.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("status"));
 		
 		checkoutTable.setItems(borrowbooks);
 		showCheckOutDetails(null);
@@ -207,7 +207,7 @@ public class CheckOutController implements Initializable {
 		.addListener((observable, oldValue, newValue) -> showCheckOutDetails(newValue));
 		
 	}
-	private void showCheckOutDetails(BorrowReturnBook item) {
+	private void showCheckOutDetails(CheckOut item) {
 		if (item != null) {
 			// Fill the labels with info from the person object.
 			bookLabel.setText(item.getBookname());
@@ -230,7 +230,7 @@ public class CheckOutController implements Initializable {
 		}
 	}
 	public void checkoutbook (ActionEvent e){
-		BorrowReturnBook ne= new BorrowReturnBook();
+		CheckOut ne= new CheckOut();
 		ne.setBookname(txtBookID.getText());
 		ne.setMembername(txtmemberID.getText());
 		ne.setBorrowDate(dtBorrowDate.getValue());
@@ -261,7 +261,7 @@ public class CheckOutController implements Initializable {
 			checkoutTable.setItems(borrowbooks);
 			
 		} else {
-			ObservableList<BorrowReturnBook> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase()== txtSearch.getText().toLowerCase());
+			ObservableList<CheckOut> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase()== txtSearch.getText().toLowerCase());
 			if (resultlist.isEmpty()) {
 				searchLabel.setText("Not found any book you search");
 				checkoutTable.setItems(resultlist);
