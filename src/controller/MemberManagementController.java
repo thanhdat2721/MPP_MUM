@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.LibraryMember;
+import model.UserSession;
 
 public class MemberManagementController implements Initializable {
 
@@ -98,10 +99,8 @@ public class MemberManagementController implements Initializable {
 
 	ObservableList<LibraryMember> members;
 	LibraryMember lmember;
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		members = FXCollections.observableArrayList();
 
 		members.add(new LibraryMember(new Integer(1), "Bat", "Bold", "999089000", "batbold@"));

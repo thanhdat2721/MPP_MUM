@@ -3,7 +3,7 @@ package model;
 public class User {
     private String email;
     private String password;
-    private int role;
+    private Role userRole;
 
     public void setEmail(String email){
         this.email = email;
@@ -20,18 +20,18 @@ public class User {
         return password;
     }
 
-    public void setRole(int role){
-        this.role = role;
+    public void setRole(Role role){
+        this.userRole = role;
     }
 
-    public int getRole(){
-        return role;
+    public Role userRole(){
+        return userRole;
     }
 
-    public User(String email, String password,int role){
+    public User(String email, String password,Role role){
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.userRole = role;
     }
 
 }
