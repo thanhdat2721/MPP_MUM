@@ -10,7 +10,7 @@
 	<bottom>
 		<HBox BorderPane.alignment="CENTER">
 			<children>
-				<Label fx:id="statusLabel" prefHeight="27.0" prefWidth="572.0" text="Label">
+				<Label fx:id="statusLabel" prefHeight="27.0" prefWidth="630.0" text="">
 					<HBox.margin>
 						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
 					</HBox.margin>
@@ -23,6 +23,7 @@
 			<children>
 				<HBox spacing="10.0">
 					<children>
+						<Button fx:id="btnLogout" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#logoutAction" prefWidth="60.0" text="Logout" />
 						<Button fx:id="btnBookManagement" mnemonicParsing="false" onAction="#bookManageButtonEvent" prefWidth="150.0" text="Book Management" />
 						<Button fx:id="btnMemberManagement" mnemonicParsing="false" prefWidth="150.0" text="Member Management" />
 					</children>
@@ -36,7 +37,7 @@
 						</Label>
 						<TextField fx:id="txtSearch" prefWidth="172.0" promptText="Member No" />
 						<Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchMember" prefWidth="100.0" text="Search" />
-						<Button mnemonicParsing="false" onAction="#cancelMember" prefWidth="100.0" text="Clear" />
+						<Button mnemonicParsing="false" onAction="#prepareDetailPanel" prefWidth="100.0" text="Clear" />
 						<Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addNewMember" prefWidth="100.0" text="Add" />
 						<Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editMember" prefWidth="100.0" text="Edit" />
 						<Region prefHeight="0.0" prefWidth="200.0" />
@@ -110,7 +111,7 @@
 								<Region prefHeight="39.0" prefWidth="123.0" />
 								<Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveMember" prefHeight="39.0" prefWidth="90.0" text="Save" />
 								<Region prefHeight="39.0" prefWidth="16.0" />
-								<Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelMember" prefHeight="39.0" prefWidth="90.0" text="Cancel">
+								<Button fx:id="btnCancel" mnemonicParsing="false" onAction="#prepareDetailPanel" prefHeight="39.0" prefWidth="90.0" text="Cancel">
 									<HBox.margin>
 										<Insets right="15.0" />
 									</HBox.margin>

@@ -2,36 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34d7781b-2886-4c46-9550-40ffe9e50530" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/BookCopy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/BookRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/Login/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/META-INF/MPP_MUM.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/META-INF/MPP_MUM.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/LibraryMemberScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/MainCheckOut.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/application/MainCheckOut.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/MemberManagementController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/MemberManagementController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/MemberManagementController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/MyController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/application/testCheckOut.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/application/testCheckOut.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloWorld/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/model/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloWorld/model/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/model/BorrowReturnBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloWorld/model/BorrowReturnBook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HelloWorld/model/CheckedOutBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HelloWorld/model/CheckedOutBook.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/BookListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/BookListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/CheckOutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/CheckOutController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/ListCheckedOutBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/ListCheckedOutBookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/DummyData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/DummyData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/model/BorrowReturnBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/model/BorrowReturnBook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/MemberManagementController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/MemberManagementController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/MemberManagementController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/MemberManagementController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/controller/MemberManagementController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/controller/MemberManagementController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/model/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/model/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/model/LibraryMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/model/LibraryMember.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/view/BookList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/view/BookList.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/view/CheckOutBook.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/view/CheckOutBook.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/view/ListCheckedOutBook.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/view/ListCheckedOutBook.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/view/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/view/Login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MPP_MUM/view/MemberManagement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MPP_MUM/view/MemberManagement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/BookListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BookListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/DummyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DummyData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/MemberManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MemberManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/LibraryMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LibraryMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/BookList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MemberManagement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemberManagement.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575581346854</updated>
-      <workItem from="1575581348261" duration="850000" />
+      <workItem from="1575581348261" duration="2125000" />
     </task>
     <servers />
   </component>
@@ -103,21 +102,21 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1575582311083">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1575583392794">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575582311083" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1575582311079">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575583392794" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1575583392793">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1575582311079" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1575582311079">
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1575583392793" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1575583392792">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1575582311079" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1575582311080">
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1575583392792" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1575583392793">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1575582311080" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1575583392793" />
   </component>
 </project>

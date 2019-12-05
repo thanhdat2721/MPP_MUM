@@ -39,14 +39,14 @@ public class LoginController {
         Parent pane;
         String email = emailField.getText();
         String password = passwordField.getText();
-        FilteredList<User> t = users.filtered(user-> user.getEmail().equals(email) && user.getPassword().equals(password));
+        FilteredList<User> t = users.filtered(user-> user.getAccountName().equals(email) && user.getPassword().equals(password));
         if(t.isEmpty()){
             resultMsg.setText("Invalid Email and Password");
         }
         else {
             resultMsg.setText("Login Successfully!");
 
-            UserSession.setUserSession(t.get(0).getEmail(),t.get(0).userRole());
+            UserSession.setUserSession(t.get(0).getAccountName(),t.get(0).userRole());
             System.out.println(t.get(0).userRole());
             try {
                 String window = t.get(0).userRole()== Role.ADMIN ? "/view/MemberManagement.fxml":"/view/CheckOutBook.fxml" ;

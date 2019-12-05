@@ -1,16 +1,16 @@
 package model;
 
-public class User {
-    private String email;
+public class User extends Person {
+    private String accountName;
     private String password;
     private Role userRole;
 
     public void setEmail(String email){
-        this.email = email;
+        this.accountName = email;
     }
 
-    public String getEmail(){
-        return email;
+    public String getAccountName(){
+        return accountName;
     }
     public void setPassword(String password){
         this.password = password;
@@ -28,9 +28,13 @@ public class User {
         return userRole;
     }
 
-    public User(String email, String password,Role role){
+    public User(String firstName,String lastName,String mobileNo,String email,String accountName, String password,Role role){
+        super.setFirstName(firstName);
+        super.setLastName(lastName);
+        super.setMobileNo(mobileNo);
+        super.setEmail(email);
         this.password = password;
-        this.email = email;
+        this.accountName = accountName;
         this.userRole = role;
     }
 

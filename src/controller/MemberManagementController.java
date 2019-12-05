@@ -90,23 +90,19 @@ public class MemberManagementController implements Initializable {
 
 	@FXML
 	private Label statusLabel;
-	
+
 	@FXML
 	private Button btnBookManagement;
-	
+
 	@FXML
 	private Button btnMemberManagement;
+	@FXML
+	private Button btnLogout;
 
-	ObservableList<LibraryMember> members;
+	ObservableList<LibraryMember> members = DummyData.memberData;
 	LibraryMember lmember;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		members = FXCollections.observableArrayList();
-
-		members.add(new LibraryMember(new Integer(1), "Bat", "Bold", "999089000", "batbold@"));
-		members.add(new LibraryMember(new Integer(2), "John", "Smith", "666666444", "johns@"));
-		members.add(new LibraryMember(new Integer(3), "James", "Haltur", "44555444", "james@"));
-		members.add(new LibraryMember(new Integer(4), "Hagen", "Peterson", "88899089000", "peterh@"));
 
 		setDisableDetailCtrl(true);
 
@@ -117,7 +113,7 @@ public class MemberManagementController implements Initializable {
 		emailColumn.setCellValueFactory(new PropertyValueFactory<LibraryMember, String>("email"));
 		rdateColumn.setCellValueFactory(new PropertyValueFactory<LibraryMember, Date>("registeredDate"));
 
-		tableView.setItems(getMembers());
+		tableView.setItems(members);
 		lmember = new LibraryMember();
 
 		txtSearch.lengthProperty().addListener(new ChangeListener<Number>() {
@@ -151,27 +147,31 @@ public class MemberManagementController implements Initializable {
 		});
 	}
 
-	public ObservableList<LibraryMember> getMembers() {
-		return members;
-	}
-
 	// button search - > filter member list
 	public void searchMember(ActionEvent event) {
 		System.out.println("search btn ");
 		statusLabel.setText("");
 
-		ObservableList<LibraryMember> filtered = getMembers()
-				.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
+		if (!txtSearch.getText().isEmpty()) {
+			ObservableList<LibraryMember> filtered = members
+					.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
 
-		if (filtered.isEmpty()) {
-			tableView.setItems(getMembers());
-			cancelMember(event);
-			statusLabel.setText("Not found");
+			if (filtered.isEmpty()) {
+				tableView.setItems(members);
+				prepareDetailPanel(event);
+				statusLabel.setText("Not found");
+			} else {
+				tableView.setItems(filtered);
+				lmember = filtered.get(0);
+				setDetailsInfo(lmember);
+				statusLabel.setText("");
+			}
 		} else {
-			tableView.setItems(filtered);
-			lmember = filtered.get(0);
-			setDetailsInfo(lmember);
-			statusLabel.setText("");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Please enter Member Id");
+			alert.setContentText("Please enter Member Id.");
+			alert.showAndWait();
 		}
 
 	}
@@ -187,10 +187,9 @@ public class MemberManagementController implements Initializable {
 
 	// button add create new member object
 	public void addNewMember(ActionEvent event) {
-		System.out.println("add btn");
-		cancelMember(event);
+		prepareDetailPanel(event);
 		lmember = new LibraryMember();
-		dateRegistered.setValue(LocalDate.now());
+		dateRegistered.setValue(lmember.getRegisteredDate());
 		setDisableDetailCtrl(false);
 
 	}
@@ -217,18 +216,15 @@ public class MemberManagementController implements Initializable {
 
 	// button save call for add and edit
 	public void saveMember(ActionEvent event) {
-		System.out.println("save btn" + lmember.getMemberNum());
-
 		if (lmember.getMemberNum() == 0) {
+			if (isMemberIdExisting(txtMemberNo.getText())) {
 
-			if (getMembers().filtered(mem -> mem.getMemberNum() == new Integer(txtMemberNo.getText())).isEmpty()) {
-
-				LibraryMember member = new LibraryMember(new Integer(txtMemberNo.getText()), txtFirstName.getText(),
+				lmember = new LibraryMember(new Integer(txtMemberNo.getText()), txtFirstName.getText(),
 						txtLastName.getText(), txtMobile.getText(), txtEmail.getText(), dateRegistered.getValue());
 
-				tableView.getItems().add(member);
+				tableView.getItems().add(lmember);
 				members = tableView.getItems();
-			}  else {
+			} else {
 				statusLabel.setText("Error:It is already in the list.");
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
@@ -248,8 +244,12 @@ public class MemberManagementController implements Initializable {
 			members.set(members.indexOf(tableView.getSelectionModel().getSelectedItem()), lmember);
 
 		}
-		cancelMember(event);
+		prepareDetailPanel(event);
 
+	}
+
+	private boolean isMemberIdExisting(String ID) {
+		return members.filtered(mem -> mem.getMemberNum() == new Integer(ID)).isEmpty();
 	}
 
 	// selected member show to detail side
@@ -264,9 +264,7 @@ public class MemberManagementController implements Initializable {
 	}
 
 	// button cancel and clear
-	public void cancelMember(ActionEvent event) {
-		System.out.println("cancel btn");
-
+	public void prepareDetailPanel(ActionEvent event) {
 		txtSearch.setText("");
 		txtMemberNo.setText("");
 		txtFirstName.setText("");
@@ -275,24 +273,39 @@ public class MemberManagementController implements Initializable {
 		txtEmail.setText("");
 
 		dateRegistered.setValue(LocalDate.now());
-		tableView.setItems(getMembers());
+		tableView.setItems(members);
 		setDisableDetailCtrl(true);
 
 	}
-	
+
 	public void bookManageButtonEvent(ActionEvent event) {
 
-		if(event.getSource() == btnBookManagement)
-	    {
+		if (event.getSource() == btnBookManagement) {
 			try {
-				Stage appStage = (Stage)btnBookManagement.getScene().getWindow();
+				Stage appStage = (Stage) btnBookManagement.getScene().getWindow();
 				Parent root = FXMLLoader.load(getClass().getResource("/view/BookList.fxml"));
-		        Scene scene = new Scene(root);
-		        appStage.setScene(scene);
-		        appStage.show();
-			} catch(Exception e) {
+				Scene scene = new Scene(root);
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    }
-	}	
+		}
+	}
+
+	public void logoutAction(ActionEvent event) {
+		if (event.getSource() == btnLogout) {
+
+			try {
+				Stage appStage = (Stage) btnLogout.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+				Scene scene = new Scene(root);
+				appStage.setTitle("Login");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
