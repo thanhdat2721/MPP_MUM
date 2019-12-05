@@ -10,12 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.BorrowReturnBook;
+import model.CheckOut;
 
 public class MainCheckOut extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	private ObservableList<BorrowReturnBook> checkoutData= FXCollections.observableArrayList();
+	private ObservableList<CheckOut> checkoutData= FXCollections.observableArrayList();
 
 	public MainCheckOut() {
 		// TODO Auto-generated constructor stub
@@ -45,11 +45,11 @@ public class MainCheckOut extends Application {
 		this.rootLayout = rootLayout;
 	}
 
-	public ObservableList<BorrowReturnBook> getCheckoutData() {
+	public ObservableList<CheckOut> getCheckoutData() {
 		return checkoutData;
 	}
 
-	public void setCheckoutData(ObservableList<BorrowReturnBook> checkoutData) {
+	public void setCheckoutData(ObservableList<CheckOut> checkoutData) {
 		this.checkoutData = checkoutData;
 	}
 
