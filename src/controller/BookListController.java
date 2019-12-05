@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,22 +11,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Book;
+import repository.BookRepo;
 import application.Main;
 
 public class BookListController implements Initializable {
 	@FXML
 	private TableView<Book> tableBook;
+	@FXML
+	private TableColumn<Book, String> idColumn;
 	@FXML
 	private TableColumn<Book, String> titleColumn;
 	@FXML
@@ -43,22 +43,18 @@ public class BookListController implements Initializable {
 	private Label issnLabel;
 	@FXML
 	private Label pDateLabel;
-	
-	@FXML Button btnMemberManagement;
+	@FXML
+	private Label numLabel;
 
-	// private Main2 mainApp;
+	@FXML
+	Button btnMemberManagement;
 
-	private ObservableList<Book> bookData = DummyData.bookData;
-
-	// public void setMainApp(Main2 mainApp) {
-	// // this.mainApp = mainApp;
-	// // ObservableList<Book> bookData = mainApp.getBookData();
-	// // tableBook.setItems(bookData);
-	// }
+	private ObservableList<Book> bookData = BookRepo.bookData;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		idColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("bookId"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
 		authorColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
 		issnColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("issn"));
@@ -75,28 +71,23 @@ public class BookListController implements Initializable {
 			this.authorLabel.setText(book.getAuthor());
 			this.issnLabel.setText(book.getIssn());
 			this.pDateLabel.setText(book.getPublishedDate().toString());
+			this.numLabel.setText(BookRepo.getBookCopyNum(book.getBookId()).toString());
 		} else {
 			this.titleLabel.setText("");
 			this.authorLabel.setText("");
 			this.issnLabel.setText("");
 			this.pDateLabel.setText("");
-		}   
+			this.numLabel.setText("");
+		}
 	}
 
 	@FXML
 	public void handleDeleteBook() {
 		int selectedIndex = tableBook.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			tableBook.getItems().remove(selectedIndex);
+			// tableBook.getItems().remove(selectedIndex);
+			BookRepo.deleteBook(tableBook.getItems().get(selectedIndex));
 		} else {
-			// Nothing selected.
-			// Alert alert = new Alert(AlertType.WARNING);
-			// alert.initOwner(mainApp.getPrimaryStage());
-			// alert.setTitle("No Selection");
-			// alert.setHeaderText("No Book Selected");
-			// alert.setContentText("Please select a book in the table.");
-			//
-			// alert.showAndWait();
 		}
 	}
 
@@ -110,14 +101,6 @@ public class BookListController implements Initializable {
 			}
 
 		} else {
-			// Nothing selected.
-			// Alert alert = new Alert(AlertType.WARNING);
-			// alert.initOwner(mainApp.getPrimaryStage());
-			// alert.setTitle("No Selection");
-			// alert.setHeaderText("No Person Selected");
-			// alert.setContentText("Please select a person in the table.");
-			//
-			// alert.showAndWait();
 		}
 
 	}
@@ -128,6 +111,15 @@ public class BookListController implements Initializable {
 		boolean okClicked = this.showBookEditDialog(tempBook);
 		if (okClicked) {
 			bookData.add(tempBook);
+		}
+	}
+
+	@FXML
+	public void handleAddBookCopy() {
+		Book selectedBook = tableBook.getSelectionModel().getSelectedItem();
+		if (selectedBook != null) {
+			BookRepo.addBookCopy(selectedBook.getBookId());
+			this.numLabel.setText(BookRepo.getBookCopyNum(selectedBook.getBookId()).toString());
 		}
 	}
 
@@ -151,21 +143,20 @@ public class BookListController implements Initializable {
 
 		return controller.isOkClicked();
 	}
-	
+
 	public void memberManageButtonEvent(ActionEvent event) {
 
-		if(event.getSource() == btnMemberManagement)
-	    {
+		if (event.getSource() == btnMemberManagement) {
 			try {
-				Stage appStage = (Stage)btnMemberManagement.getScene().getWindow();
+				Stage appStage = (Stage) btnMemberManagement.getScene().getWindow();
 				Parent root = FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
-		        Scene scene = new Scene(root);
-		        appStage.setTitle("Member Management");
-		        appStage.setScene(scene);
-		        appStage.show();
-			} catch(Exception e) {
+				Scene scene = new Scene(root);
+				appStage.setTitle("Member Management");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    }
-	}	
+		}
+	}
 }
