@@ -2,7 +2,6 @@ package controller;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -187,11 +186,11 @@ public class CheckOutController implements Initializable {
 		borrowbooks = FXCollections.observableArrayList(
 			
 		new CheckOut("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
+		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "borrowed"),
+		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "borrowed"),
 		new CheckOut("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
 		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "New"),
+		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "borrowed"),
 		new CheckOut("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
 			);
 
@@ -230,17 +229,26 @@ public class CheckOutController implements Initializable {
 		}
 	}
 	public void checkoutbook (ActionEvent e){
-		CheckOut ne= new CheckOut();
-		ne.setBookname(txtBookID.getText());
-		ne.setMembername(txtmemberID.getText());
-		ne.setBorrowDate(dtBorrowDate.getValue());
-		ne.setDueDate(dtBorrowDate.getValue().plusDays(12));
-		ne.setReturnDate(null);
-		ne.setStatus("Processing");
-		borrowbooks.add(ne);
-		
+		if (txtBookID.getText()==""|| txtmemberID.getText()==null||dtBorrowDate.getValue()==null) {
+			searchLabel.setText("Please input information in Book and Member");
+			//Message("Please input information in Book and Member");
+			
+		} else {
+			CheckOut ne= new CheckOut();
+			LocalDate today= LocalDate.now();
+			ne.setBookname(txtBookID.getText());
+			ne.setMembername(txtmemberID.getText());
+			if(dtBorrowDate.getValue()!=null)
+			{
+			ne.setBorrowDate(dtBorrowDate.getValue());
+			ne.setDueDate(dtBorrowDate.getValue().plusDays(12));
+			ne.setReturnDate(dtBorrowDate.getValue().minusDays(2));
+			ne.setStatus("Processing");
+			}
+			borrowbooks.add(ne);
 
-	
+		}
+		
 	}
 	public void cancelcheckoutbook (ActionEvent e){
 		txtBookID.setText(null);
