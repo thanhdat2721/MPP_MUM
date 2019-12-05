@@ -48,7 +48,7 @@ public class BookListController implements Initializable {
 
 	// private Main2 mainApp;
 
-	private ObservableList<Book> bookData = FXCollections.observableArrayList();
+	private ObservableList<Book> bookData = DummyData.bookData;
 
 	// public void setMainApp(Main2 mainApp) {
 	// // this.mainApp = mainApp;
@@ -65,13 +65,6 @@ public class BookListController implements Initializable {
 
 		tableBook.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> showBookDetails(newValue));
-
-		bookData.add(new Book("The Stranger", "Albert Camus"));
-		bookData.add(new Book("Don Quixote", "Miguel de Cervantes"));
-		bookData.add(new Book("The Sun Also Rises", "Ernest Hemingway"));
-		bookData.add(new Book("To Kill a Mockingbird", "Harper Lee"));
-		bookData.add(new Book("Invisible Man", "Ralph Ellison"));
-		bookData.add(new Book("Pride and Prejudice", "Jane Austen"));
 		tableBook.setItems(bookData);
 
 	}
