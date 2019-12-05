@@ -89,25 +89,18 @@ public class MemberManagementController implements Initializable {
 
 	@FXML
 	private Label statusLabel;
-	
+
 	@FXML
 	private Button btnBookManagement;
-	
+
 	@FXML
 	private Button btnMemberManagement;
 
-	ObservableList<LibraryMember> members;
+	ObservableList<LibraryMember> members = DummyData.memberData;
 	LibraryMember lmember;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-		members = FXCollections.observableArrayList();
-
-		members.add(new LibraryMember(new Integer(1), "Bat", "Bold", "999089000", "batbold@"));
-		members.add(new LibraryMember(new Integer(2), "John", "Smith", "666666444", "johns@"));
-		members.add(new LibraryMember(new Integer(3), "James", "Haltur", "44555444", "james@"));
-		members.add(new LibraryMember(new Integer(4), "Hagen", "Peterson", "88899089000", "peterh@"));
 
 		setDisableDetailCtrl(true);
 
@@ -161,18 +154,26 @@ public class MemberManagementController implements Initializable {
 		System.out.println("search btn ");
 		statusLabel.setText("");
 
-		ObservableList<LibraryMember> filtered = getMembers()
-				.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
+		if (!txtSearch.getText().isEmpty()) {
+			ObservableList<LibraryMember> filtered = getMembers()
+					.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
 
-		if (filtered.isEmpty()) {
-			tableView.setItems(getMembers());
-			cancelMember(event);
-			statusLabel.setText("Not found");
+			if (filtered.isEmpty()) {
+				tableView.setItems(getMembers());
+				cancelMember(event);
+				statusLabel.setText("Not found");
+			} else {
+				tableView.setItems(filtered);
+				lmember = filtered.get(0);
+				setDetailsInfo(lmember);
+				statusLabel.setText("");
+			}
 		} else {
-			tableView.setItems(filtered);
-			lmember = filtered.get(0);
-			setDetailsInfo(lmember);
-			statusLabel.setText("");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Please enter Member Id");
+			alert.setContentText("Please enter Member Id.");
+			alert.showAndWait();
 		}
 
 	}
@@ -229,7 +230,7 @@ public class MemberManagementController implements Initializable {
 
 				tableView.getItems().add(member);
 				members = tableView.getItems();
-			}  else {
+			} else {
 				statusLabel.setText("Error:It is already in the list.");
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
@@ -280,20 +281,19 @@ public class MemberManagementController implements Initializable {
 		setDisableDetailCtrl(true);
 
 	}
-	
+
 	public void bookManageButtonEvent(ActionEvent event) {
 
-		if(event.getSource() == btnBookManagement)
-	    {
+		if (event.getSource() == btnBookManagement) {
 			try {
-				Stage appStage = (Stage)btnBookManagement.getScene().getWindow();
+				Stage appStage = (Stage) btnBookManagement.getScene().getWindow();
 				Parent root = FXMLLoader.load(getClass().getResource("/view/BookList.fxml"));
-		        Scene scene = new Scene(root);
-		        appStage.setScene(scene);
-		        appStage.show();
-			} catch(Exception e) {
+				Scene scene = new Scene(root);
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    }
-	}	
+		}
+	}
 }
