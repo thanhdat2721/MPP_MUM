@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="473.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppController">
+   <children>
+      <AnchorPane fx:id="pane_main" layoutX="290.0" layoutY="1.0" prefHeight="506.0" prefWidth="1111.0" />
+      <AnchorPane layoutY="-1.0" prefHeight="507.0" prefWidth="292.0" style="-fx-background-color: #2A363F;">
+         <children>
+            <AnchorPane layoutY="1.0" prefHeight="506.0" prefWidth="40.0" style="-fx-background-color: #6ED9A0;" />
+            <Button fx:id="btn_bookManagement" layoutX="40.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleMenuClick" prefHeight="41.0" prefWidth="252.0" style="-fx-background-color: #2A363F;" text="BOOK MANAGEMENT" textAlignment="JUSTIFY" textFill="WHITE">
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="btn_memberManagement" layoutX="40.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleMenuClick" prefHeight="41.0" prefWidth="252.0" style="-fx-background-color: #2A363F;" text="MEMBER MANAGEMENT" textFill="WHITE" />
+            <Button fx:id="btn_logOut" layoutX="40.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleMenuClick" prefHeight="41.0" prefWidth="252.0" style="-fx-background-color: #2A363F;" text="LOG OUT" textFill="WHITE" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

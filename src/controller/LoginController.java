@@ -16,7 +16,6 @@ import model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import model.UserSession;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,9 +48,8 @@ public class LoginController {
             UserSession.setUserSession(t.get(0).getAccountName(),t.get(0).userRole());
             System.out.println(t.get(0).userRole());
             try {
-                String window = t.get(0).userRole()== Role.ADMIN ? "/view/MemberManagement.fxml":"/view/CheckOutBook.fxml" ;
                 pane = FXMLLoader.load(
-                        getClass().getResource(window));
+                        getClass().getResource("/view/App.fxml"));
 
                 Stage app_state = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
                 if(t.get(0).userRole()==Role.ADMIN) {
@@ -60,7 +58,7 @@ public class LoginController {
                 else {
                 	app_state.setTitle("Librarian");
                 }
-
+                app_state.setWidth(1300);
                 app_state.getScene().setRoot(pane);
                 app_state.show();
             } catch (IOException e) {
@@ -69,4 +67,5 @@ public class LoginController {
 
         }
     }
+
 }
