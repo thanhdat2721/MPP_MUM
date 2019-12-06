@@ -7,7 +7,7 @@ public class LibraryMember extends Person {
 	private int memberNum;	
 	private LocalDate registeredDate;
 	public LibraryMember() {
-		
+		this.registeredDate=LocalDate.now();
 	}
 	public LibraryMember(String firstName, String lastName, String mobileNo, String email, int memberNum, LocalDate registeredDate) {
 		super(firstName, lastName, mobileNo, email);
