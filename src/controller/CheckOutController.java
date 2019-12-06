@@ -185,12 +185,12 @@ public class CheckOutController implements Initializable {
 
 		borrowbooks = FXCollections.observableArrayList(
 			
-		new CheckOut("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "borrowed"),
-		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "borrowed"),
-		new CheckOut("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "borrowed"),
+		new CheckOut("Computer Science ","Hung", LocalDate.now().minusDays(7), LocalDate.now().plusDays(7), LocalDate.now(), "Returned"),
+		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"),
+		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"),
+		new CheckOut("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now(), "Returned"),
+		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now().minusDays(7), "borrowed"),
 		new CheckOut("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
 			);
 
@@ -230,7 +230,7 @@ public class CheckOutController implements Initializable {
 	}
 	public void checkoutbook (ActionEvent e){
 		if (txtBookID.getText()==""|| txtmemberID.getText()==null||dtBorrowDate.getValue()==null) {
-			searchLabel.setText("Please input information in Book and Member");
+			searchLabel.setText("Please input information in Book, Member and Borrowed date");
 			//Message("Please input information in Book and Member");
 			
 		} else {
