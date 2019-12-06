@@ -72,11 +72,11 @@ public class AppController implements Initializable {
             try {
                 node = (Node) FXMLLoader.load(getClass().getResource(windowUrl));
                 if(UserSession.getRole()== Role.ADMIN){
-                    btn_memberManagement.setStyle("-fx-background-color: #2A363F");
-                    btn_bookManagement.setStyle("-fx-background-color: #6ED9A0");
-                }else{
-                    btn_bookManagement.setStyle("-fx-background-color: #2A363F");
                     btn_memberManagement.setStyle("-fx-background-color: #6ED9A0");
+                    btn_bookManagement.setStyle("-fx-background-color: #2A363F");
+                }else{
+                    btn_bookManagement.setStyle("-fx-background-color: #6ED9A0");
+                    btn_memberManagement.setStyle("-fx-background-color: #2A363F");
                 }
                 pane_main.getChildren().setAll(node);
             } catch (IOException e) {

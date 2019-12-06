@@ -3,17 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a6db01c7-9b97-4e6d-9481-a0e1dc0c746d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/MainCheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/MainCheckOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CheckOutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CheckOutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/DummyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DummyData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ListCheckedOutBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ListCheckedOutBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MemberManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MemberManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/CheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/CheckOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/LibraryMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LibraryMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/BookList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/BookList.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CheckOutBook.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CheckOutBook.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ListCheckedOutBook.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ListCheckedOutBook.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AppController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575647271396</updated>
-      <workItem from="1575647272728" duration="2455000" />
+      <workItem from="1575647272728" duration="2734000" />
     </task>
     <servers />
   </component>
@@ -88,25 +78,25 @@
       <screen x="0" y="23" width="1440" height="816" />
     </state>
     <state x="533" y="146" key="#com.intellij.ide.util.MemberChooser/0.23.1440.816@0.23.1440.816" timestamp="1575647932834" />
-    <state width="1398" height="209" key="GridCell.Tab.0.bottom" timestamp="1575649829349">
+    <state width="1398" height="209" key="GridCell.Tab.0.bottom" timestamp="1575650148299">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1398" height="209" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1575649829349" />
+    <state width="1398" height="209" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1575650148299" />
     <state width="1398" height="209" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1575649133639" />
-    <state width="1398" height="209" key="GridCell.Tab.0.center" timestamp="1575649829349">
+    <state width="1398" height="209" key="GridCell.Tab.0.center" timestamp="1575650148299">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1398" height="209" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1575649829349" />
+    <state width="1398" height="209" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1575650148299" />
     <state width="1398" height="209" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1575649133639" />
-    <state width="1398" height="209" key="GridCell.Tab.0.left" timestamp="1575649829349">
+    <state width="1398" height="209" key="GridCell.Tab.0.left" timestamp="1575650148298">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1398" height="209" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1575649829349" />
+    <state width="1398" height="209" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1575650148298" />
     <state width="1398" height="209" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1575649133638" />
-    <state width="1398" height="209" key="GridCell.Tab.0.right" timestamp="1575649829349">
+    <state width="1398" height="209" key="GridCell.Tab.0.right" timestamp="1575650148299">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1398" height="209" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1575649829349" />
+    <state width="1398" height="209" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1575650148299" />
     <state width="1398" height="209" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1575649133639" />
   </component>
 </project>
