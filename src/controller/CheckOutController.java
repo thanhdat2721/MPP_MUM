@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import application.MainCheckOut;
-import javafx.collections.FXCollections;
+//import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+//import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.CheckOut;
+
 
 public class CheckOutController implements Initializable {
 	@FXML
@@ -192,7 +194,8 @@ public class CheckOutController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		borrowbooks = FXCollections.observableArrayList(
+		borrowbooks = DummyData.checkoutData;
+				/*FXCollections.observableArrayList(
 			
 		new CheckOut("Computer Science ","Hung", LocalDate.now().minusDays(7), LocalDate.now().plusDays(7), LocalDate.now(), "Returned"),
 		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"),
@@ -201,7 +204,7 @@ public class CheckOutController implements Initializable {
 		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
 		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now().minusDays(7), "borrowed"),
 		new CheckOut("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
-			);
+			);*/
 
 		cBook.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("bookname")); //getMembern()
 		cMem.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("membername"));
@@ -217,7 +220,7 @@ public class CheckOutController implements Initializable {
 	}
 	private void showCheckOutDetails(CheckOut item) {
 		if (item != null) {
-			// Fill the labels with info from the person object.
+			//item.member =DummyData.memberData.filtered()
 			bookLabel.setText(item.getBookname());
 			memberLabel.setText(item.getMembername());
 			dborrowedLabel.setText(item.getBorrowDate().toString());
@@ -228,7 +231,7 @@ public class CheckOutController implements Initializable {
 			// TODO: We need a way to convert the birthday into a String!
 			// birthdayLabel.setText(...);
 		} else {
-			// Person is null, remove all the text.
+			
 			bookLabel.setText("");
 			memberLabel.setText("");
 			dborrowedLabel.setText("");
@@ -278,7 +281,9 @@ public class CheckOutController implements Initializable {
 			checkoutTable.setItems(borrowbooks);
 			
 		} else {
-			ObservableList<CheckOut> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase()== txtSearch.getText().toLowerCase());
+			//FilteredList<CheckOut> filteredData = new FilteredList<>(borrowbooks, chk -> true);
+			//filteredData.setPredicate(arg0);
+			ObservableList<CheckOut> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase().contains(txtSearch.getText().toLowerCase()));
 			if (resultlist.isEmpty()) {
 				searchLabel.setText("Not found any book you search");
 				checkoutTable.setItems(resultlist);

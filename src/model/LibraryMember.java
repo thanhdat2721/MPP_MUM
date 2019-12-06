@@ -18,6 +18,9 @@ public class LibraryMember extends Person {
 	public int getMemberNum() {
 		return memberNum;
 	}
+	public String getFullName() {
+		return getFirstName()+getLastName();
+	}
 
 	public void setMemberNum(int memberNum) {
 		this.memberNum = memberNum;
