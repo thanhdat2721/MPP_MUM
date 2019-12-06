@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class CheckOut {
 	Book book = new Book();
-	LibraryMember member = new LibraryMember();
+	public LibraryMember member = new LibraryMember();
 	LocalDate borrowDate;
 	LocalDate dueDate;
 	LocalDate returnDate;

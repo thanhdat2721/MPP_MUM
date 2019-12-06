@@ -54,9 +54,14 @@ public class ListCheckedOutBookController implements Initializable{
 	@FXML
 	private TableColumn<CheckedOutBook, String> dueDateCol;
 	
+	@FXML
+	private Button btnLogout;
+	@FXML
+	private Button btnBookOverdue;
+	
 	ObservableList<CheckedOutBook> listBooks;
 	
-	private static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("[MM/dd/yyyy]");
+	DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -81,35 +86,24 @@ public class ListCheckedOutBookController implements Initializable{
 	
 	
 	public ObservableList<CheckedOutBook> findOverdueBook(LocalDate dueDate){
-System.out.println(">>>>>>> "+ LocalDate.parse(dueDate.format(FORMATTER),FORMATTER));
+
 		FilteredList<CheckedOutBook> filteredData = new FilteredList<>(listBooks, b -> true);
 		filteredData.setPredicate(checkedOutBook -> {
-			if(LocalDate.parse(dueDate.format(FORMATTER), FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate(), FORMATTER), ChronoUnit.DAYS) <= 0) {
+			System.out.println(LocalDate.parse(dueDate.format(FORMATTER).toString(),FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate(), FORMATTER), ChronoUnit.DAYS));
+			if(LocalDate.parse(dueDate.format(FORMATTER).toString(),FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate(), FORMATTER), ChronoUnit.DAYS) <= 0) {
 				return true;
 			}
-			return false;
+			else {
+				return false;
+			}
+			
 		});
 
 		
 		return filteredData;
 	}
 	
-	public void findButtonEvent(ActionEvent event) {
-
-//		if(event.getSource() == btnFind)
-//	    {
-//			try {
-//				Stage appStage = (Stage)btnFind.getScene().getWindow();
-//				Parent root = FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
-//		        Scene scene = new Scene(root);
-//		        appStage.setScene(scene);
-//		        appStage.show();
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//			}
-//	    }
-//		
-		
+	public void findButtonEvent(ActionEvent event) {	
 		LocalDate findDate = dtFindDate.getValue();
 		if(findDate == null) {
 			bookTableView.setItems(listBooks);
@@ -118,5 +112,37 @@ System.out.println(">>>>>>> "+ LocalDate.parse(dueDate.format(FORMATTER),FORMATT
 		ObservableList<CheckedOutBook> listBooksOverdue = findOverdueBook(findDate);
 		bookTableView.setItems(listBooksOverdue);
 		return;
+	}
+	
+	public void checkoutBookButtonEvent(ActionEvent event) {
+
+		if (event.getSource() == btnBookOverdue) {
+			try {
+				Stage appStage = (Stage) btnBookOverdue.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/CheckOutBook.fxml"));
+				Scene scene = new Scene(root);
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void logoutAction(ActionEvent event) {
+		if (event.getSource() == btnLogout) {
+
+			try {
+				Stage appStage = (Stage) btnLogout.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
+				appStage.setTitle("Login");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

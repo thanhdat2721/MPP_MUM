@@ -219,8 +219,8 @@ public class MemberManagementController implements Initializable {
 		if (lmember.getMemberNum() == 0) {
 			if (isMemberIdExisting(txtMemberNo.getText())) {
 
-				lmember = new LibraryMember(new Integer(txtMemberNo.getText()), txtFirstName.getText(),
-						txtLastName.getText(), txtMobile.getText(), txtEmail.getText(), dateRegistered.getValue());
+				lmember = new LibraryMember(txtFirstName.getText(),
+						txtLastName.getText(), txtMobile.getText(), txtEmail.getText(), Integer.parseInt(txtMemberNo.getText()), dateRegistered.getValue());
 
 				tableView.getItems().add(lmember);
 				members = tableView.getItems();
@@ -234,7 +234,7 @@ public class MemberManagementController implements Initializable {
 			}
 		} else {
 			System.out.println("edit" + lmember.getMemberNum());
-			lmember.setMemberNum(new Integer(txtMemberNo.getText()));
+			lmember.setMemberNum(Integer.parseInt(txtMemberNo.getText()));
 			lmember.setFirstName(txtFirstName.getText());
 			lmember.setLastName(txtLastName.getText());
 			lmember.setMobileNo(txtMobile.getText());

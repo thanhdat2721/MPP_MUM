@@ -6,30 +6,13 @@ public class LibraryMember extends Person {
 
 	private int memberNum;	
 	private LocalDate registeredDate;
-	
 	public LibraryMember() {
-		// TODO Auto-generated constructor stub
-		memberNum = 0;
-		registeredDate=LocalDate.now();
-
+		
 	}
-
-	public LibraryMember(int memberNum, LocalDate registeredDate) {
-		super();
+	public LibraryMember(String firstName, String lastName, String mobileNo, String email, int memberNum, LocalDate registeredDate) {
+		super(email, email, email, email);
 		this.memberNum = memberNum;
 		this.registeredDate = registeredDate;
-	}
-
-
-
-	public LibraryMember(int memNo, String fname, String lname, String mobile, String emailAdr, LocalDate rdate) {
-		this.setFirstName(fname);
-		this.setLastName(lname);
-		this.setMobileNo(mobile);
-		this.setEmail(emailAdr);
-		registeredDate = rdate;
-		memberNum = memNo;
-
 	}
 
 	public int getMemberNum() {
