@@ -10,7 +10,7 @@ public class LibraryMember extends Person {
 		
 	}
 	public LibraryMember(String firstName, String lastName, String mobileNo, String email, int memberNum, LocalDate registeredDate) {
-		super(email, email, email, email);
+		super(firstName, lastName, mobileNo, email);
 		this.memberNum = memberNum;
 		this.registeredDate = registeredDate;
 	}

@@ -189,7 +189,7 @@ public class MemberManagementController implements Initializable {
 	public void addNewMember(ActionEvent event) {
 		prepareDetailPanel(event);
 		lmember = new LibraryMember();
-		dateRegistered.setValue(lmember.getRegisteredDate());
+		dateRegistered.setValue(LocalDate.now());
 		setDisableDetailCtrl(false);
 
 	}
