@@ -6,86 +6,143 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CheckOutController">
-   <top>
-      <TitledPane animated="false" prefHeight="151.0" prefWidth="600.0" text="Check Out" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="772.0">
-               <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Member" />
-                  <TextField fx:id="txtmemberID" layoutX="84.0" layoutY="10.0" prefHeight="25.0" prefWidth="174.0" />
-                  <TextField fx:id="txtBookID" layoutX="407.0" layoutY="10.0" prefHeight="25.0" prefWidth="334.0" />
-                  <Label layoutX="336.0" layoutY="14.0" text="Book" />
-                  <DatePicker fx:id="dtBorrowDate" layoutX="84.0" layoutY="46.0" />
-                  <Button fx:id="btnCheckOut" layoutX="669.0" layoutY="46.0" mnemonicParsing="false" onAction="#checkoutbook" text="Check Out" />
-                  <Button fx:id="btnCancel" layoutX="552.0" layoutY="46.0" mnemonicParsing="false" onAction="#cancelcheckoutbook" text="Cancel" />
-                  <Button fx:id="btnRefresh" layoutX="407.0" layoutY="46.0" mnemonicParsing="false" onAction="#refreshcheckoutbook" text="Refresh" />
-                  <Label layoutX="14.0" layoutY="50.0" text="Borrow Date" />
-               </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
-   </top>
-   <bottom>
-      <Pane prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="searchLabel" layoutX="36.0" layoutY="-4.0" text="Label">
-               <font>
-                  <Font size="22.0" />
-               </font></Label>
-         </children>
-      </Pane>
-   </bottom>
-   <right>
-      <Pane prefHeight="299.0" prefWidth="294.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="txtSearch" layoutX="103.0" layoutY="14.0" promptText="Insert Book to Find" />
-            <Label layoutX="36.0" layoutY="18.0" text="Book Title" />
-            <Button fx:id="btnSearch" layoutX="38.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchcheckoutbook" prefHeight="25.0" prefWidth="216.0" text="Search" />
-            <GridPane layoutX="31.0" layoutY="102.0">
-               <children>
-                  <Label text="Book Title :" />
-                  <Label fx:id="bookLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" />
-                  <Label fx:id="memberLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label layoutX="206.0" layoutY="47.0" text="Member  :" GridPane.rowIndex="1" />
-                  <Label text="Date Borrowed :" GridPane.rowIndex="2" />
-                  <Label text="Date Due :" GridPane.rowIndex="3" />
-                  <Label text="Date Returned" GridPane.rowIndex="4" />
-                  <Label text="Status :" GridPane.rowIndex="5" />
-                  <Label fx:id="dborrowedLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="ddueLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="dreturnLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="statusLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <Label layoutX="36.0" layoutY="75.0" styleClass="label-header" text="Check Out Details:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-   </right>
-   <center>
-      <TableView fx:id="checkoutTable" prefHeight="327.0" prefWidth="480.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="cBook" prefWidth="223.0" text="Book" />
-          <TableColumn fx:id="cMem" minWidth="0.0" prefWidth="88.0" text="Member" />
-            <TableColumn fx:id="cBor" prefWidth="95.0" text="Date Borrowed" />
-            <TableColumn fx:id="cStatus" prefWidth="71.0" text="Status" />
-        </columns>
-      </TableView>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0"
+	prefWidth="774.0" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.CheckOutController">
+	<top>
+		<VBox BorderPane.alignment="CENTER">
+			<children>
+				<HBox spacing="10.0">
+					<children>
+						<Button fx:id="btnLogout" contentDisplay="RIGHT"
+							mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT"
+							onAction="#logoutAction" prefWidth="60.0" text="Logout" />
+						<Button fx:id="btnBookOverdue" mnemonicParsing="false"
+							onAction="#bookOverdueButtonEvent" prefWidth="150.0"
+							text="Overdue Book" />
+						
+					</children>
+				</HBox>
+				<TitledPane animated="false" prefHeight="151.0"
+					prefWidth="600.0" text="Check Out" BorderPane.alignment="CENTER">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0"
+							prefHeight="80.0" prefWidth="772.0">
+							<children>
+								<Label layoutX="14.0" layoutY="14.0" text="Member" />
+								<TextField fx:id="txtmemberID" layoutX="84.0"
+									layoutY="10.0" prefHeight="25.0" prefWidth="174.0" />
+								<TextField fx:id="txtBookID" layoutX="407.0"
+									layoutY="10.0" prefHeight="25.0" prefWidth="334.0" />
+								<Label layoutX="336.0" layoutY="14.0" text="Book" />
+								<DatePicker fx:id="dtBorrowDate" layoutX="84.0"
+									layoutY="46.0" />
+								<Button fx:id="btnCheckOut" layoutX="669.0"
+									layoutY="46.0" mnemonicParsing="false" onAction="#checkoutbook"
+									text="Check Out" />
+								<Button fx:id="btnCancel" layoutX="552.0" layoutY="46.0"
+									mnemonicParsing="false" onAction="#cancelcheckoutbook"
+									text="Cancel" />
+								<Button fx:id="btnRefresh" layoutX="407.0" layoutY="46.0"
+									mnemonicParsing="false" onAction="#refreshcheckoutbook"
+									text="Refresh" />
+								<Label layoutX="14.0" layoutY="50.0" text="Borrow Date" />
+							</children>
+						</AnchorPane>
+					</content>
+				</TitledPane>
+			</children>
+		</VBox>
+	</top>
+	<bottom>
+		<Pane prefHeight="27.0" prefWidth="600.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Label fx:id="searchLabel" layoutX="36.0" layoutY="-4.0"
+					text="Label">
+					<font>
+						<Font size="22.0" />
+					</font>
+				</Label>
+			</children>
+		</Pane>
+	</bottom>
+	<right>
+		<Pane prefHeight="299.0" prefWidth="294.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<TextField fx:id="txtSearch" layoutX="103.0"
+					layoutY="14.0" promptText="Insert Book to Find" />
+				<Label layoutX="36.0" layoutY="18.0" text="Book Title" />
+				<Button fx:id="btnSearch" layoutX="38.0" layoutY="50.0"
+					mnemonicParsing="false" onAction="#searchcheckoutbook"
+					prefHeight="25.0" prefWidth="216.0" text="Search" />
+				<GridPane layoutX="31.0" layoutY="102.0">
+					<children>
+						<Label text="Book Title :" />
+						<Label fx:id="bookLabel" styleClass="label-bright"
+							text="Label" GridPane.columnIndex="1" />
+						<Label fx:id="memberLabel" styleClass="label-bright"
+							text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+						<Label layoutX="206.0" layoutY="47.0" text="Member  :"
+							GridPane.rowIndex="1" />
+						<Label text="Date Borrowed :" GridPane.rowIndex="2" />
+						<Label text="Date Due :" GridPane.rowIndex="3" />
+						<Label text="Date Returned" GridPane.rowIndex="4" />
+						<Label text="Status :" GridPane.rowIndex="5" />
+						<Label fx:id="dborrowedLabel" styleClass="label-bright"
+							text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+						<Label fx:id="ddueLabel" styleClass="label-bright"
+							text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+						<Label fx:id="dreturnLabel" styleClass="label-bright"
+							text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+						<Label fx:id="statusLabel" styleClass="label-bright"
+							text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+					</children>
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES"
+							minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES"
+							minWidth="10.0" prefWidth="100.0" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0"
+							vgrow="SOMETIMES" />
+					</rowConstraints>
+				</GridPane>
+				<Label layoutX="36.0" layoutY="75.0" styleClass="label-header"
+					text="Check Out Details:">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+			</children>
+		</Pane>
+	</right>
+	<center>
+		<TableView fx:id="checkoutTable" prefHeight="327.0"
+			prefWidth="480.0" BorderPane.alignment="CENTER">
+			<columns>
+				<TableColumn fx:id="cBook" prefWidth="223.0" text="Book" />
+				<TableColumn fx:id="cMem" minWidth="0.0"
+					prefWidth="88.0" text="Member" />
+				<TableColumn fx:id="cBor" prefWidth="95.0"
+					text="Date Borrowed" />
+				<TableColumn fx:id="cStatus" prefWidth="71.0"
+					text="Status" />
+			</columns>
+		</TableView>
+	</center>
 </BorderPane>

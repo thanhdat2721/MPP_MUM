@@ -10,7 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -18,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.CheckOut;
 
 public class CheckOutController implements Initializable {
@@ -82,6 +86,11 @@ public class CheckOutController implements Initializable {
 	private Label statusLabel; //searchLabel
 	@FXML
 	private Label searchLabel;
+	
+	@FXML
+	private Button btnLogout;
+	@FXML
+	private Button btnBookOverdue;
 
 	ObservableList<CheckOut> borrowbooks;
 	CheckOut lBorrow;
@@ -280,6 +289,38 @@ public class CheckOutController implements Initializable {
 
 			}
 					//.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
+		}
+	}
+	
+	public void bookOverdueButtonEvent(ActionEvent event) {
+
+		if (event.getSource() == btnBookOverdue) {
+			try {
+				Stage appStage = (Stage) btnBookOverdue.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/ListCheckedOutBook.fxml"));
+				Scene scene = new Scene(root);
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void logoutAction(ActionEvent event) {
+		if (event.getSource() == btnLogout) {
+
+			try {
+				Stage appStage = (Stage) btnLogout.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
+				appStage.setTitle("Login");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
