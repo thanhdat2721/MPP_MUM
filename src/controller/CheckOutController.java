@@ -213,7 +213,7 @@ public class CheckOutController implements Initializable {
 		
 		checkoutTable.setItems(borrowbooks);
 		showCheckOutDetails(null);
-		
+		searchLabel.setText("");
 		checkoutTable.getSelectionModel().selectedItemProperty()
 		.addListener((observable, oldValue, newValue) -> showCheckOutDetails(newValue));
 		
@@ -255,7 +255,7 @@ public class CheckOutController implements Initializable {
 			ne.setBorrowDate(dtBorrowDate.getValue());
 			ne.setDueDate(dtBorrowDate.getValue().plusDays(12));
 			ne.setReturnDate(dtBorrowDate.getValue().minusDays(2));
-			ne.setStatus("Processing");
+			ne.setStatus("Borrowed");
 			}
 			borrowbooks.add(ne);
 
