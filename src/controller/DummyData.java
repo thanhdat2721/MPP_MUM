@@ -22,13 +22,13 @@ public final class DummyData {
 		memberData.add(new LibraryMember("John", "Smith", "666666444", "johns@", 2, LocalDate.of(2019, 11, 1)));
 		memberData.add(new LibraryMember("James", "Haltur", "44555444", "james@", 3, LocalDate.of(2019, 1, 23)));
 		memberData.add(new LibraryMember("Hagen", "Peterson", "88899089000", "peterh@", 4, LocalDate.of(2019, 3, 4)));
-		checkoutData.add(new CheckOut("Computer Science ","1", LocalDate.now().minusDays(7), LocalDate.now().plusDays(7), LocalDate.now(), "Returned"));
-		checkoutData.add(new CheckOut("Information Technology ","1", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"));
-		checkoutData.add(new CheckOut("Data Management/Data Analytic ","2", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"));
-		checkoutData.add(new CheckOut("Cybersecurity and Information Assurance ","3", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now(), "Returned"));
-		checkoutData.add(new CheckOut("Computer Science ","4", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"));
-		checkoutData.add(new CheckOut("Data Management/Data Analytic ","2", LocalDate.now(), LocalDate.now(), LocalDate.now().minusDays(7), "borrowed"));
-		checkoutData.add(new CheckOut("Cybersecurity and Information Assurance ","4", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"));	
+		checkoutData.add(new CheckOut("Computer Science ","Bat", LocalDate.now().minusDays(7), LocalDate.now().plusDays(7), LocalDate.now(), "Returned"));
+		checkoutData.add(new CheckOut("Information Technology ","Bat", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"));
+		checkoutData.add(new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"));
+		checkoutData.add(new CheckOut("Cybersecurity and Information Assurance ","James", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now(), "Returned"));
+		checkoutData.add(new CheckOut("Computer Science ","Hagen", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"));
+		checkoutData.add(new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now().minusDays(7), "borrowed"));
+		checkoutData.add(new CheckOut("Cybersecurity and Information Assurance ","Hagen", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"));	
 	}
 }
  

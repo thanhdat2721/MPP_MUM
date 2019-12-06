@@ -300,6 +300,7 @@ public class MemberManagementController implements Initializable {
 				Stage appStage = (Stage) btnLogout.getScene().getWindow();
 				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
 				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
 				appStage.setTitle("Login");
 				appStage.setScene(scene);
 				appStage.show();
