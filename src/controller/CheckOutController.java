@@ -2,16 +2,19 @@ package controller;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 import application.MainCheckOut;
-import javafx.collections.FXCollections;
+//import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+//import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -19,7 +22,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.CheckOut;
+
 
 public class CheckOutController implements Initializable {
 	@FXML
@@ -83,6 +88,11 @@ public class CheckOutController implements Initializable {
 	private Label statusLabel; //searchLabel
 	@FXML
 	private Label searchLabel;
+	
+	@FXML
+	private Button btnLogout;
+	@FXML
+	private Button btnBookOverdue;
 
 	ObservableList<CheckOut> borrowbooks;
 	CheckOut lBorrow;
@@ -184,16 +194,17 @@ public class CheckOutController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		borrowbooks = FXCollections.observableArrayList(
+		borrowbooks = DummyData.checkoutData;
+				/*FXCollections.observableArrayList(
 			
-		new CheckOut("Computer Science ","Hung", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
-		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Processing"),
-		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now(), "New"),
+		new CheckOut("Computer Science ","Hung", LocalDate.now().minusDays(7), LocalDate.now().plusDays(7), LocalDate.now(), "Returned"),
+		new CheckOut("Information Technology ","Peter", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"),
+		new CheckOut("Data Management/Data Analytic ","John", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now().minusDays(7), "borrowed"),
+		new CheckOut("Cybersecurity and Information Assurance ","Lion", LocalDate.now(), LocalDate.now().plusDays(30), LocalDate.now(), "Returned"),
+		new CheckOut("Computer Science ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned"),
+		new CheckOut("Data Management/Data Analytic ","Bella", LocalDate.now(), LocalDate.now(), LocalDate.now().minusDays(7), "borrowed"),
 		new CheckOut("Cybersecurity and Information Assurance ","Melisa", LocalDate.now(), LocalDate.now(), LocalDate.now(), "Returned")	
-			);
+			);*/
 
 		cBook.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("bookname")); //getMembern()
 		cMem.setCellValueFactory(new PropertyValueFactory<CheckOut,String>("membername"));
@@ -209,7 +220,7 @@ public class CheckOutController implements Initializable {
 	}
 	private void showCheckOutDetails(CheckOut item) {
 		if (item != null) {
-			// Fill the labels with info from the person object.
+			//item.member =DummyData.memberData.filtered()
 			bookLabel.setText(item.getBookname());
 			memberLabel.setText(item.getMembername());
 			dborrowedLabel.setText(item.getBorrowDate().toString());
@@ -220,7 +231,7 @@ public class CheckOutController implements Initializable {
 			// TODO: We need a way to convert the birthday into a String!
 			// birthdayLabel.setText(...);
 		} else {
-			// Person is null, remove all the text.
+			
 			bookLabel.setText("");
 			memberLabel.setText("");
 			dborrowedLabel.setText("");
@@ -230,17 +241,26 @@ public class CheckOutController implements Initializable {
 		}
 	}
 	public void checkoutbook (ActionEvent e){
-		CheckOut ne= new CheckOut();
-		ne.setBookname(txtBookID.getText());
-		ne.setMembername(txtmemberID.getText());
-		ne.setBorrowDate(dtBorrowDate.getValue());
-		ne.setDueDate(dtBorrowDate.getValue().plusDays(12));
-		ne.setReturnDate(null);
-		ne.setStatus("Processing");
-		borrowbooks.add(ne);
-		
+		if (txtBookID.getText()==""|| txtmemberID.getText()==null||dtBorrowDate.getValue()==null) {
+			searchLabel.setText("Please input information in Book, Member and Borrowed date");
+			//Message("Please input information in Book and Member");
+			
+		} else {
+			CheckOut ne= new CheckOut();
+			LocalDate today= LocalDate.now();
+			ne.setBookname(txtBookID.getText());
+			ne.setMembername(txtmemberID.getText());
+			if(dtBorrowDate.getValue()!=null)
+			{
+			ne.setBorrowDate(dtBorrowDate.getValue());
+			ne.setDueDate(dtBorrowDate.getValue().plusDays(12));
+			ne.setReturnDate(dtBorrowDate.getValue().minusDays(2));
+			ne.setStatus("Processing");
+			}
+			borrowbooks.add(ne);
 
-	
+		}
+		
 	}
 	public void cancelcheckoutbook (ActionEvent e){
 		txtBookID.setText(null);
@@ -261,7 +281,9 @@ public class CheckOutController implements Initializable {
 			checkoutTable.setItems(borrowbooks);
 			
 		} else {
-			ObservableList<CheckOut> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase()== txtSearch.getText().toLowerCase());
+			//FilteredList<CheckOut> filteredData = new FilteredList<>(borrowbooks, chk -> true);
+			//filteredData.setPredicate(arg0);
+			ObservableList<CheckOut> resultlist = borrowbooks.filtered(chk -> chk.getBookname().toLowerCase().contains(txtSearch.getText().toLowerCase()));
 			if (resultlist.isEmpty()) {
 				searchLabel.setText("Not found any book you search");
 				checkoutTable.setItems(resultlist);
@@ -272,6 +294,38 @@ public class CheckOutController implements Initializable {
 
 			}
 					//.filtered(mem -> mem.getMemberNum() == new Integer(txtSearch.getText()));
+		}
+	}
+	
+	public void bookOverdueButtonEvent(ActionEvent event) {
+
+		if (event.getSource() == btnBookOverdue) {
+			try {
+				Stage appStage = (Stage) btnBookOverdue.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/ListCheckedOutBook.fxml"));
+				Scene scene = new Scene(root);
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void logoutAction(ActionEvent event) {
+		if (event.getSource() == btnLogout) {
+
+			try {
+				Stage appStage = (Stage) btnLogout.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
+				appStage.setTitle("Login");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

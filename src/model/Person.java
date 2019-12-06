@@ -38,4 +38,17 @@ public class Person {
 		this.email = email;
 	}
 
+	public Person() {
+		
+	}
+	
+	public Person(String firstName, String lastName, String mobileNo, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mobileNo = mobileNo;
+		this.email = email;
+	}
+	
+	
+
 }

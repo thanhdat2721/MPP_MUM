@@ -12,7 +12,6 @@
 			<children>
 				<HBox spacing="10.0">
 					<children>
-						<Button fx:id="btnLogout" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#logoutAction" prefWidth="60.0" text="Logout" />
 						<Button mnemonicParsing="false" prefWidth="150.0" text="Book Management" />
 						<Button fx:id="btnMemberManagement" mnemonicParsing="false" onAction="#memberManageButtonEvent" prefWidth="150.0" text="Member Management" />
 					</children>

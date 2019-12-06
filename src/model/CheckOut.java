@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class CheckOut {
 	Book book = new Book();
-	LibraryMember member = new LibraryMember();
+	public LibraryMember member = new LibraryMember();
 	LocalDate borrowDate;
 	LocalDate dueDate;
 	LocalDate returnDate;
@@ -79,15 +79,7 @@ public class CheckOut {
 		return mem;
 	
 	}
-	/*public BorrowReturnBook(String book, String member, String borrowDate, String dueDate,String realDate, String status) {
-		super();
-		this.book.setTitle(book);
-		this.member.setFirstName(member);
-		//this.borrowDate =(borrowDate);
-		//this.dueDate = dueDate;
-		//this.returnDate =realDate;
-		this.setStatus(status);
-	}*/
+	
 	public LibraryMember getMember() {
 		return member;
 	}

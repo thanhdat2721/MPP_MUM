@@ -26,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.CheckOut;
 import model.CheckedOutBook;
 
 public class ListCheckedOutBookController implements Initializable{
@@ -37,86 +38,113 @@ public class ListCheckedOutBookController implements Initializable{
 	private Button btnFind;
 	
 	@FXML
-	private TableView<CheckedOutBook> bookTableView;
+	private TableView<CheckOut> bookTableView;
+	
+//	@FXML
+//	private TableColumn<CheckOut, Integer> idCol;
+
+	@FXML
+	private TableColumn<CheckOut, String> bookNameCol;
+
+	@FXML
+	private TableColumn<CheckOut, String> memberNameCol;
+
+	@FXML
+	private TableColumn<CheckOut, String> checkoutDateCol;
+
+	@FXML
+	private TableColumn<CheckOut, String> dueDateCol;
 	
 	@FXML
-	private TableColumn<CheckedOutBook, Integer> idCol;
-
+	private Button btnLogout;
 	@FXML
-	private TableColumn<CheckedOutBook, String> bookNameCol;
-
-	@FXML
-	private TableColumn<CheckedOutBook, String> memberNameCol;
-
-	@FXML
-	private TableColumn<CheckedOutBook, String> checkoutDateCol;
-
-	@FXML
-	private TableColumn<CheckedOutBook, String> dueDateCol;
+	private Button btnBookOverdue;
 	
-	ObservableList<CheckedOutBook> listBooks;
+	ObservableList<CheckOut> listBooks;
 	
-	private static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("[MM/dd/yyyy]");
+	DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		idCol.setCellValueFactory(new PropertyValueFactory<CheckedOutBook, Integer>("id"));
-		bookNameCol.setCellValueFactory(new PropertyValueFactory<CheckedOutBook, String>("bookName"));
-		memberNameCol.setCellValueFactory(new PropertyValueFactory<CheckedOutBook, String>("memberName"));
-		checkoutDateCol.setCellValueFactory(new PropertyValueFactory<CheckedOutBook, String>("checkoutDate"));
-		dueDateCol.setCellValueFactory(new PropertyValueFactory<CheckedOutBook, String>("dueDate"));
+		//idCol.setCellValueFactory(new PropertyValueFactory<CheckedOutBook, Integer>("id"));
+		bookNameCol.setCellValueFactory(new PropertyValueFactory<CheckOut, String>("bookname"));
+		memberNameCol.setCellValueFactory(new PropertyValueFactory<CheckOut, String>("membername"));
+		checkoutDateCol.setCellValueFactory(new PropertyValueFactory<CheckOut, String>("borrowDate"));
+		dueDateCol.setCellValueFactory(new PropertyValueFactory<CheckOut, String>("dueDate"));
 		
 		bookTableView.setItems(getListCheckoutBook());
 		
 	}
 	
-	public ObservableList<CheckedOutBook> getListCheckoutBook(){
+	public ObservableList<CheckOut> getListCheckoutBook(){
 		
-		listBooks = FXCollections.observableArrayList();
-		listBooks.add(new CheckedOutBook(1, "TM1", "Khanh", "11/01/2019", "12/01/2019"));
-		listBooks.add(new CheckedOutBook(2, "Java In Action", "Dat", "10/01/2019", "11/01/2019"));
+//		listBooks = FXCollections.observableArrayList();
+//		listBooks.add(new CheckedOutBook(1, "TM1", "Khanh", "11/01/2019", "12/01/2019"));
+//		listBooks.add(new CheckedOutBook(2, "Java In Action", "Dat", "10/01/2019", "11/01/2019"));
+		listBooks = DummyData.checkoutData;
 		return listBooks;
 	}
 	
 	
-	public ObservableList<CheckedOutBook> findOverdueBook(LocalDate dueDate){
-System.out.println(">>>>>>> "+ LocalDate.parse(dueDate.format(FORMATTER),FORMATTER));
-		FilteredList<CheckedOutBook> filteredData = new FilteredList<>(listBooks, b -> true);
+	public ObservableList<CheckOut> findOverdueBook(LocalDate dueDate){
+
+		FilteredList<CheckOut> filteredData = new FilteredList<>(listBooks, b -> true);
 		filteredData.setPredicate(checkedOutBook -> {
-			if(LocalDate.parse(dueDate.format(FORMATTER), FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate(), FORMATTER), ChronoUnit.DAYS) <= 0) {
+			System.out.println(LocalDate.parse(dueDate.format(FORMATTER).toString(),FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate().toString(), FORMATTER), ChronoUnit.DAYS));
+			if(LocalDate.parse(dueDate.format(FORMATTER).toString(),FORMATTER).until(LocalDate.parse(checkedOutBook.getDueDate().toString(), FORMATTER), ChronoUnit.DAYS) <= 0) {
 				return true;
 			}
-			return false;
+			else {
+				return false;
+			}
+			
 		});
 
 		
 		return filteredData;
 	}
 	
-	public void findButtonEvent(ActionEvent event) {
-
-//		if(event.getSource() == btnFind)
-//	    {
-//			try {
-//				Stage appStage = (Stage)btnFind.getScene().getWindow();
-//				Parent root = FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
-//		        Scene scene = new Scene(root);
-//		        appStage.setScene(scene);
-//		        appStage.show();
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//			}
-//	    }
-//		
-		
+	public void findButtonEvent(ActionEvent event) {	
 		LocalDate findDate = dtFindDate.getValue();
 		if(findDate == null) {
 			bookTableView.setItems(listBooks);
 			return;
 		}
-		ObservableList<CheckedOutBook> listBooksOverdue = findOverdueBook(findDate);
+		ObservableList<CheckOut> listBooksOverdue = findOverdueBook(findDate);
 		bookTableView.setItems(listBooksOverdue);
 		return;
+	}
+	
+	public void checkoutBookButtonEvent(ActionEvent event) {
+
+		if (event.getSource() == btnBookOverdue) {
+			try {
+				Stage appStage = (Stage) btnBookOverdue.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/CheckOutBook.fxml"));
+				Scene scene = new Scene(root);
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void logoutAction(ActionEvent event) {
+		if (event.getSource() == btnLogout) {
+
+			try {
+				Stage appStage = (Stage) btnLogout.getScene().getWindow();
+				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
+				appStage.setTitle("Login");
+				appStage.setScene(scene);
+				appStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
