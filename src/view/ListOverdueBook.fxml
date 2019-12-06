@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListCheckedOutBookController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OverdueBookController">
 	<center>
 		<Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="440.0" prefWidth="971.0" BorderPane.alignment="CENTER">
 			<children>
@@ -26,7 +26,7 @@
 						</HBox>
 						<TableView fx:id="bookTableView" prefHeight="200.0" prefWidth="200.0">
 							<columns>
-								<TableColumn fx:id="idCol" prefWidth="34.0" text="No." />
+								
 								<TableColumn fx:id="bookNameCol" minWidth="0.0" prefWidth="230.0" text="Book Name" />
 								<TableColumn fx:id="memberNameCol" minWidth="0.0" prefWidth="222.0" text="Member Name" />
 								<TableColumn fx:id="checkoutDateCol" prefWidth="106.0" text="Checkout date" />

@@ -27,7 +27,7 @@ public class AppController implements Initializable {
 
             Node node;
             try {
-                String windowUrl = UserSession.getRole()== Role.ADMIN ? "/view/MemberManagement.fxml":"/view/ListCheckedOutBook.fxml";
+                String windowUrl = UserSession.getRole()== Role.ADMIN ? "/view/MemberManagement.fxml":"/view/ListOverdueBook.fxml";
                 node = (Node) FXMLLoader.load(getClass().getResource(windowUrl));
                 btn_memberManagement.setStyle("-fx-background-color: #6ED9A0");
                 btn_bookManagement.setStyle("-fx-background-color: #2A363F");
