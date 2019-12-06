@@ -103,36 +103,4 @@ public class OverdueBookController implements Initializable{
 		bookTableView.setItems(listBooksOverdue);
 		return;
 	}
-	
-	public void checkoutBookButtonEvent(ActionEvent event) {
-
-		if (event.getSource() == btnBookOverdue) {
-			try {
-				Stage appStage = (Stage) btnBookOverdue.getScene().getWindow();
-				Parent root = FXMLLoader.load(getClass().getResource("/view/CheckOutBook.fxml"));
-				Scene scene = new Scene(root);
-				appStage.setScene(scene);
-				appStage.show();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void logoutAction(ActionEvent event) {
-		if (event.getSource() == btnLogout) {
-
-			try {
-				Stage appStage = (Stage) btnLogout.getScene().getWindow();
-				Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
-				Scene scene = new Scene(root);
-				scene.getStylesheets().add(getClass().getResource("../view/Login.css").toExternalForm());
-				appStage.setTitle("Login");
-				appStage.setScene(scene);
-				appStage.show();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
 }
