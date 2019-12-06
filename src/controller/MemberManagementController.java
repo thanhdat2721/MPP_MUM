@@ -100,7 +100,9 @@ public class MemberManagementController implements Initializable {
 	private Button btnLogout;
 
 	ObservableList<LibraryMember> members = DummyData.memberData;
+
 	LibraryMember lmember;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -189,7 +191,7 @@ public class MemberManagementController implements Initializable {
 	public void addNewMember(ActionEvent event) {
 		prepareDetailPanel(event);
 		lmember = new LibraryMember();
-		dateRegistered.setValue(LocalDate.now());
+		dateRegistered.setValue(lmember.getRegisteredDate());
 		setDisableDetailCtrl(false);
 
 	}
@@ -219,8 +221,8 @@ public class MemberManagementController implements Initializable {
 		if (lmember.getMemberNum() == 0) {
 			if (isMemberIdExisting(txtMemberNo.getText())) {
 
-				lmember = new LibraryMember(txtFirstName.getText(),
-						txtLastName.getText(), txtMobile.getText(), txtEmail.getText(), Integer.parseInt(txtMemberNo.getText()), dateRegistered.getValue());
+				lmember = new LibraryMember(txtFirstName.getText(), txtLastName.getText(), txtMobile.getText(),
+						txtEmail.getText(), Integer.parseInt(txtMemberNo.getText()), dateRegistered.getValue());
 
 				tableView.getItems().add(lmember);
 				members = tableView.getItems();
