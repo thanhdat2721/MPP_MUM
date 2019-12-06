@@ -27,7 +27,8 @@ public class AppController implements Initializable {
 
             Node node;
             try {
-                node = (Node) FXMLLoader.load(getClass().getResource("/view/MemberManagement.fxml"));
+                String windowUrl = UserSession.getRole()== Role.ADMIN ? "/view/MemberManagement.fxml":"/view/ListCheckedOutBook.fxml";
+                node = (Node) FXMLLoader.load(getClass().getResource(windowUrl));
                 btn_memberManagement.setStyle("-fx-background-color: #6ED9A0");
                 btn_bookManagement.setStyle("-fx-background-color: #2A363F");
                 pane_main.getChildren().setAll(node);
@@ -39,7 +40,8 @@ public class AppController implements Initializable {
         if(actionEvent.getSource() == btn_bookManagement){
             Node node;
             try {
-                node = (Node) FXMLLoader.load(getClass().getResource("/view/CheckOutBook.fxml"));
+                String windowUrl = UserSession.getRole()== Role.ADMIN ? "/view/BookList.fxml":"/view/CheckOutBook.fxml";
+                node = (Node) FXMLLoader.load(getClass().getResource(windowUrl));
                 btn_bookManagement.setStyle("-fx-background-color: #6ED9A0");
                 btn_memberManagement.setStyle("-fx-background-color: #2A363F");
                 pane_main.getChildren().setAll(node);
@@ -75,6 +77,8 @@ public class AppController implements Initializable {
                     btn_memberManagement.setStyle("-fx-background-color: #6ED9A0");
                     btn_bookManagement.setStyle("-fx-background-color: #2A363F");
                 }else{
+                    btn_bookManagement.setText("CHECKOUT BOOK");
+                    btn_memberManagement.setText("FIND OVERDUE BOOK");
                     btn_bookManagement.setStyle("-fx-background-color: #6ED9A0");
                     btn_memberManagement.setStyle("-fx-background-color: #2A363F");
                 }
